@@ -1,60 +1,24 @@
 # Домашнее задание к занятию "Работа в терминале. Лекция 1"
 
-### Цель задания
-
-В результате выполнения этого задания вы:
-1. Научитесь работать с базовым функционалом инструмента VirtualBox, который помогает с быстрой разверткой виртуальных машин.
-2. Научитесь работать с документацией в формате man, чтобы ориентироваться в этом полезном и мощном инструменте документации.
-3. Ознакомитесь с функциями Bash (PATH, HISTORY, batch/at), которые помогут комфортно работать с оболочкой командной строки (шеллом) и понять некоторые его ограничения.
-
-
-### Инструкция к заданию
-
-1. Установите средство виртуализации [Oracle VirtualBox](https://www.virtualbox.org/).
-
-1. Установите средство автоматизации [Hashicorp Vagrant](https://hashicorp-releases.yandexcloud.net/vagrant/).
-
-1. В вашем основном окружении подготовьте удобный для дальнейшей работы терминал. Можно предложить:
-
-	* iTerm2 в Mac OS X
-	* Windows Terminal в Windows
-	* выбрать цветовую схему, размер окна, шрифтов и т.д.
-	* почитать о кастомизации PS1/применить при желании.
-
-	Несколько популярных проблем:
-	* Добавьте Vagrant в правила исключения перехватывающих трафик для анализа антивирусов, таких как Kaspersky, если у вас возникают связанные с SSL/TLS ошибки,
-	* MobaXterm может конфликтовать с Vagrant в Windows,
-	* Vagrant плохо работает с директориями с кириллицей (может быть вашей домашней директорией), тогда можно либо изменить [VAGRANT_HOME](https://www.vagrantup.com/docs/other/environmental-variables#vagrant_home), либо создать в системе профиль пользователя с английским именем,
-	* VirtualBox конфликтует с Windows Hyper-V и его необходимо [отключить](https://www.vagrantup.com/docs/installation#windows-virtualbox-and-hyper-v),
-	* [WSL2](https://docs.microsoft.com/ru-ru/windows/wsl/wsl2-faq#does-wsl-2-use-hyper-v-will-it-be-available-on-windows-10-home) использует Hyper-V, поэтому с ним VirtualBox также несовместим,
-	* аппаратная виртуализация (Intel VT-x, AMD-V) должна быть активна в BIOS,
-	* в Linux при установке [VirtualBox](https://www.virtualbox.org/wiki/Linux_Downloads) может дополнительно потребоваться пакет `linux-headers-generic` (debian-based) / `kernel-devel` (rhel-based).
-
-
-### Инструменты/ дополнительные материалы, которые пригодятся для выполнения задания
-
-1. [Конфигурация VirtualBox через Vagrant](https://www.vagrantup.com/docs/providers/virtualbox/configuration.html)
-2. [Использование условий в Bash](https://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html)
-
-------
-
-## Задание
 
 1. С помощью базового файла конфигурации запустите Ubuntu 20.04 в VirtualBox посредством Vagrant:
 
-	* Создайте директорию, в которой будут храниться конфигурационные файлы Vagrant. В ней выполните `vagrant init`. Замените содержимое Vagrantfile по умолчанию следующим:
+	* Создал директорию C:\vagrant\vm, в которой будут храниться конфигурационные файлы Vagrant и образ системы, скачанный с https://app.vagrantup.com/bento/boxes/ubuntu-20.04/versions/202212.11.0/providers/virtualbox.box. Переименовал скачанный образ в "bento-ubuntu20.box". Запустил командую строку в C:\vagrant\vm и выполнил `vagrant init`. Заменил содержимое Vagrantfile по умолчанию следующим:
 
 		```bash
 		Vagrant.configure("2") do |config|
-			config.vm.box = "bento/ubuntu-20.04"
+			config.vm.box = "bento-ubuntu20.box"
 		end
 		```
 
-	* Выполнение в этой директории `vagrant up` установит провайдер VirtualBox для Vagrant, скачает необходимый образ и запустит виртуальную машину.
+	* Выполнил в терминале Windows в директории C:\vagrant\vm команду `vagrant up`. В терминале увидел сообщение, что машина стартанула: `==> default: Machine booted and ready!` 
 
-	* `vagrant suspend` выключит виртуальную машину с сохранением ее состояния (т.е., при следующем `vagrant up` будут запущены все процессы внутри, которые работали на момент вызова suspend), `vagrant halt` выключит виртуальную машину штатным образом.
+	* Попрактиковался в выполнении команд `vagrant suspend`, `vagrant up` и `vagrant halt`, параллельно наблюдая за происходящим в окне Oracle VM VirtualBox Менеджер.
 
 1. Ознакомьтесь с графическим интерфейсом VirtualBox, посмотрите как выглядит виртуальная машина, которую создал для вас Vagrant, какие аппаратные ресурсы ей выделены. Какие ресурсы выделены по-умолчанию?
+
+### Ответ:
+![2](images/2.png)
 
 1. Ознакомьтесь с возможностями конфигурации VirtualBox через Vagrantfile: [документация](https://www.vagrantup.com/docs/providers/virtualbox/configuration.html). Как добавить оперативной памяти или ресурсов процессора виртуальной машине?
 

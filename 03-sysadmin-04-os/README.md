@@ -200,6 +200,7 @@ file locks                      (-x) unlimited
 
 ##### Ответ:
 
+![](images/6.PNG)
 
 ---
 

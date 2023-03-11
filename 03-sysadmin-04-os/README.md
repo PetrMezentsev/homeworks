@@ -135,13 +135,63 @@ vagrant@vagrant:~$ systemctl status node_exporter
 4. Можно ли по выводу `dmesg` понять, осознаёт ли ОС, что загружена не на настоящем оборудовании, а на системе виртуализации?
 
 ##### Ответ:
-
+Машина понимает, в какой среде она работает
+```bash
+vagrant@vagrant:/var/log$ egrep irtual ./dmesg
+[    0.000000] kernel: DMI: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[    0.017201] kernel: CPU MTRRs all blank - virtualized system.
+[    0.350185] kernel: Booting paravirtualized kernel on KVM
+[    8.284338] systemd[1]: Detected virtualization oracle.
+```
 
 ---
 
 5. Как настроен sysctl `fs.nr_open` на системе по умолчанию? Определите, что означает этот параметр. Какой другой существующий лимит не позволит достичь такого числа (`ulimit --help`)?
 
 ##### Ответ:
+
+```bash
+vagrant@vagrant:/var/log$ sysctl fs.nr_open
+fs.nr_open = 1048576 // Лимит открытых файлов для каждого отдельного процесса
+```
+'Мягкий' лимит `open files (-n) 1024` не позволит достичь такого числа
+```bash
+vagrant@vagrant:/var/log$ ulimit -a
+core file size          (blocks, -c) 0
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 7579
+max locked memory       (kbytes, -l) 65536
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 1024 // 'Мягкий' лимит задан здесь
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) 8192
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 7579
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+
+vagrant@vagrant:/var/log$ ulimit -aH
+core file size          (blocks, -c) unlimited
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 7579
+max locked memory       (kbytes, -l) 65536
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 1048576 // 'Жёсткий' лимит задан здесь
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) unlimited
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 7579
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+```
 
 
 ---

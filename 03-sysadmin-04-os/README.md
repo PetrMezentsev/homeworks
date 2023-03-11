@@ -8,6 +8,94 @@
 
 ##### Ответ:
 
+Получаем node_exporter и размещаем в нужной директории
+```bash
+wget https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz
+tar -xzvf node_exporter-1.5.0.linux-amd64.tar.gz
+sudo cp node_exporter-1.5.0.linux-amd64/node_exporter /usr/local/bin
+```
+Создаём unit-файл для node_exporter
+```bash
+vagrant@vagrant:~$ sudo nano /etc/systemd/system/node_exporter.service
+
+[Unit]
+Description=Node Exporter Service
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+EnvironmentFile=-/etc/default/node_exporter
+ExecStart=/usr/local/bin/node_exporter
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Type=simple
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+```
+
+Перечитываем конфигурационные файлы
+```bash
+vagrant@vagrant:~$ sudo systemctl daemon-reload
+```
+
+Включаем сервис
+```bash
+vagrant@vagrant:~$ sudo systemctl enable node_exporter
+Created symlink /etc/systemd/system/multi-user.target.wants/node_exporter.service → /etc/systemd/system/node_exporter.service.
+```
+
+Стартуем сервис
+```bash
+vagrant@vagrant:~$ sudo systemctl start node_exporter
+```
+
+Проверяем запущенный сервис
+```bash
+vagrant@vagrant:~$ ps -ax | grep node_exporter
+   2855 ?        Ssl    0:00 /usr/local/bin/node_exporter
+   2888 pts/0    S+     0:00 grep --color=auto node_exporter
+```
+
+Останавливаем запущенный сервис и проверяем его статус
+```bash
+vagrant@vagrant:~$ sudo systemctl stop node_exporter
+vagrant@vagrant:~$ ps -ax | grep node_exporter
+   2915 pts/0    S+     0:00 grep --color=auto node_exporter
+vagrant@vagrant:~$ systemctl status node_exporter
+● node_exporter.service - Node Exporter Service
+     Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; vendor pres>
+     Active: inactive (dead) since Sat 2023-03-11 05:17:01 UTC; 2min 24s ago
+    Process: 2855 ExecStart=/usr/local/bin/node_exporter (code=killed, signal=TERM)
+   Main PID: 2855 (code=killed, signal=TERM)
+
+Mar 11 05:11:42 vagrant node_exporter[2855]: ts=2023-03-11T05:11:42.163Z caller=node>
+Mar 11 05:11:42 vagrant node_exporter[2855]: ts=2023-03-11T05:11:42.163Z caller=node>
+Mar 11 05:11:42 vagrant node_exporter[2855]: ts=2023-03-11T05:11:42.163Z caller=node>
+Mar 11 05:11:42 vagrant node_exporter[2855]: ts=2023-03-11T05:11:42.163Z caller=node>
+Mar 11 05:11:42 vagrant node_exporter[2855]: ts=2023-03-11T05:11:42.163Z caller=node>
+Mar 11 05:11:42 vagrant node_exporter[2855]: ts=2023-03-11T05:11:42.164Z caller=tls_>
+Mar 11 05:11:42 vagrant node_exporter[2855]: ts=2023-03-11T05:11:42.164Z caller=tls_>
+Mar 11 05:17:01 vagrant systemd[1]: Stopping Node Exporter Service...
+Mar 11 05:17:01 vagrant systemd[1]: node_exporter.service: Succeeded.
+Mar 11 05:17:01 vagrant systemd[1]: Stopped Node Exporter Service.
+```
+
+Перезагружаемся, проверяем, запустилось ли автоматически
+```bash
+vagrant@vagrant:~$ uptime
+ 05:21:21 up 0 min,  1 user,  load average: 7.02, 1.70, 0.57
+vagrant@vagrant:~$ systemctl status node_exporter
+● node_exporter.service - Node Exporter Service
+     Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; vendor pres>
+     Active: active (running) since Sat 2023-03-11 05:21:03 UTC; 25s ago
+   Main PID: 641 (node_exporter)
+      Tasks: 5 (limit: 2273)
+     Memory: 15.3M
+     CGroup: /system.slice/node_exporter.service
+             └─641 /usr/local/bin/node_exporter
+```
 
 ---
 

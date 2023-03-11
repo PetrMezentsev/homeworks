@@ -103,6 +103,10 @@ vagrant@vagrant:~$ systemctl status node_exporter
 
 ##### Ответ:
 
+По CPU я бы выбрал данные из раздела `# TYPE node_cpu_seconds_total counter`, например `node_cpu_seconds_total{cpu="0",mode="idle"} 2131.28` и так далее;  
+По памяти будут полезны метрики `node_memory_MemTotal_bytes 2.079502336e+09` и `node_memory_MemFree_bytes 1.160425472e+09`;  
+По диску `node_disk_io_now{device="sda"} 0`;  
+По сети `node_network_speed_bytes{device="eth0"} 1.25e+08`, `node_network_transmit_drop_total{device="eth0"} 0`, `node_network_transmit_errs_total{device="eth0"} 0`  
 
 ---
 
@@ -121,6 +125,10 @@ vagrant@vagrant:~$ systemctl status node_exporter
 
 ##### Ответ:
 
+Выполнил всё по инструкции, проблем не было, полистал страничку в веб-интерфейсе хост-машины, ознакомился с описанием графиков. Снимок экрана своей хост-машины прилагаю
+
+
+![](images/3.PNG)
 
 ---
 

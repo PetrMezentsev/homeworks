@@ -14,26 +14,9 @@ wget https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_e
 tar -xzvf node_exporter-1.5.0.linux-amd64.tar.gz
 sudo cp node_exporter-1.5.0.linux-amd64/node_exporter /usr/local/bin
 ```
-Создаём unit-файл для node_exporter
-```bash
-vagrant@vagrant:~$ sudo nano /etc/systemd/system/node_exporter.service
+Создаём unit-файл и файл для опций node_exporter
 
-[Unit]
-Description=Node Exporter Service
-Wants=network-online.target
-After=network-online.target
-
-[Service]
-EnvironmentFile=-/etc/default/node_exporter
-ExecStart=/usr/local/bin/node_exporter
-ExecReload=/bin/kill -HUP $MAINPID
-KillMode=process
-Type=simple
-Restart=on-failure
-
-[Install]
-WantedBy=multi-user.target
-```
+![](images/1.PNG)
 
 Перечитываем конфигурационные файлы
 ```bash

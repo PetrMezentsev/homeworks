@@ -66,6 +66,14 @@ X-DNS-Prefetch-Control: off
  
  ##### Ответ:
  
+ Полученный код - 307 Internal Redirect (Temporary Redirect), означает, что запрошенный ресурс был временно перемещён в URL-адрес, указанный в заголовке Location: https://stackoverflow.com/
+ 
+ ![](images/2_1.PNG)
+ 
+ Время загрузки страницы 581.65 мс. Дольше всего обрабатывался запрос GET https://stackoverflow.com/ 
+ 
+ ![](images/2_.PNG)
+ 
  ---
 
 **Шаг 3.** Какой IP-адрес у вас в интернете?

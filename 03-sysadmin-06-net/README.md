@@ -157,10 +157,29 @@ vagrant@vagrant:~$ mtr -zbtc 333 8.8.8.8
 
 ##### Ответ:
 
+```bash
+vagrant@vagrant:~$ dig NS dns.google +short
+ns4.zdns.google.
+ns1.zdns.google.
+ns2.zdns.google.
+ns3.zdns.google.
+
+vagrant@vagrant:~$ dig A dns.google +short
+8.8.4.4
+8.8.8.8
+```
+
 ---
 
 **Шаг 8.** Проверьте PTR записи для IP-адресов из задания 7. Какое доменное имя привязано к IP? Воспользуйтесь утилитой `dig`.
 
 ##### Ответ:
+
+```bash
+vagrant@vagrant:~$ dig +noall +answer -x 8.8.4.4
+4.4.8.8.in-addr.arpa.   6829    IN      PTR     dns.google.
+vagrant@vagrant:~$ dig +noall +answer -x 8.8.8.8
+8.8.8.8.in-addr.arpa.   3307    IN      PTR     dns.google.
+```
 
 ---

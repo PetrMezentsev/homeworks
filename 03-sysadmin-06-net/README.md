@@ -72,7 +72,7 @@ X-DNS-Prefetch-Control: off
  
  Время загрузки страницы 581.65 мс. Дольше всего обрабатывался запрос GET https://stackoverflow.com/ 
  
- ![](images/2_.PNG)
+ ![](images/2_2.PNG)
  
  ---
 

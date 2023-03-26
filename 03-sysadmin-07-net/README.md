@@ -380,4 +380,6 @@ Unused:
 
 ##### Ответ:
 
+Для проверки ARP-таблицы в Linux и Windows можно воспользоваться командой `arp -a`. Полная очистка ARP-кеша Linux - ` sudo ip -s -s neigh flush all`, Windows - `netsh interface IP delete arpcache`. Для удаления определенного IP из кеша в Linux и Windows - `arp -d <ip-address>`
+
 ---

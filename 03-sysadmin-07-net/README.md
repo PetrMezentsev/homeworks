@@ -186,6 +186,60 @@ vagrant@vagrant:~$ ip a
 
 ##### Ответ:
 
+В Linux применяется тип агрегации (объединения нескольких физических каналов предачи в один логический) `bonding` и `teaming`.  Существует ряд опций для балансировки нагрузки:
+
+```bash
+0 - balance-rr - (round-robin)
+
+1 - active-backup
+
+2 - balance-xor
+
+3 - broadcast
+
+4 - 802.3ad - (dynamic link aggregation)
+
+5 - balance-tlb - (adaptive transmit load balancing)
+
+6 - balance-alb - (adaptive load balancing)
+```
+
+Приступаем к настройке:
+
+```bash
+vagrant@vagrant:~$ sudo apt install ifenslave
+vagrant@vagrant:~$ sudo modprobe bonding
+vagrant@vagrant:~$ lsmod | grep bonding
+bonding               167936  0
+vagrant@vagrant:~$ sudo nano /etc/netplan/01-netcfg.yaml
+network:
+  version: 2
+  ethernets:
+    eth0:
+      dhcp4: true
+    eth10:
+      dhcp4: no
+    eth11:
+      dhcp4: no
+  bonds:
+    bond0:
+      addresses: [192.168.2.222/24]
+      interfaces: [eth10, eth11]
+      parameters:
+        mode: balance-rr
+  vlans:
+    eth0.300:
+      id: 300
+      link: eth0
+      addresses: [192.168.2.228/24]
+vagrant@vagrant:~$ sudo netplan apply
+vagrant@vagrant:~$ ip a show bond0
+6: bond0: <NO-CARRIER,BROADCAST,MULTICAST,MASTER,UP> mtu 1500 qdisc noqueue state DOWN group default qlen 1000
+    link/ether 46:f5:21:ee:2a:7e brd ff:ff:ff:ff:ff:ff
+    inet 192.168.2.222/24 brd 192.168.2.255 scope global bond0
+       valid_lft forever preferred_lft forever
+```
+
 ---
 
 5. Сколько IP-адресов в сети с маской /29 ? Сколько /29 подсетей можно получить из сети с маской /24. Приведите несколько примеров /29 подсетей внутри сети 10.10.10.0/24.

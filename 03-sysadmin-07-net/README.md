@@ -58,6 +58,31 @@ LLDP neighbors:
 -------------------------------------------------------------------------------
 ```
 
+```bash
+vagrant@vagrant:~$ systemctl status lldpd
+● lldpd.service - LLDP daemon
+     Loaded: loaded (/lib/systemd/system/lldpd.service; enabled; vendor preset: enabled)
+     Active: active (running) since Sun 2023-03-26 06:20:52 UTC; 3h 14min ago
+       Docs: man:lldpd(8)
+   Main PID: 44807 (lldpd)
+      Tasks: 2 (limit: 2273)
+     Memory: 2.5M
+     CGroup: /system.slice/lldpd.service
+             ├─44807 lldpd: monitor.
+             └─44824 lldpd: no neighbor.
+
+Mar 26 06:20:52 vagrant systemd[1]: Started LLDP daemon.
+Mar 26 06:20:52 vagrant lldpd[44824]: /etc/localtime copied to chroot
+Mar 26 06:20:52 vagrant lldpd[44824]: protocol LLDP enabled
+Mar 26 06:20:52 vagrant lldpd[44824]: protocol CDPv1 disabled
+Mar 26 06:20:52 vagrant lldpd[44824]: protocol CDPv2 disabled
+Mar 26 06:20:52 vagrant lldpd[44824]: protocol SONMP disabled
+Mar 26 06:20:52 vagrant lldpd[44824]: protocol EDP disabled
+Mar 26 06:20:52 vagrant lldpd[44824]: protocol FDP disabled
+Mar 26 06:20:52 vagrant lldpd[44824]: libevent 2.1.11-stable initialized with epoll method
+Mar 26 06:20:52 vagrant lldpcli[44823]: lldpd should resume operations
+```
+
 ---
 
 3. Какая технология используется для разделения L2-коммутатора на несколько виртуальных сетей? Какой пакет и команды есть в Linux для этого? Приведите пример конфига.

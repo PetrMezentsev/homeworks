@@ -62,7 +62,64 @@ LLDP neighbors:
 
 3. Какая технология используется для разделения L2-коммутатора на несколько виртуальных сетей? Какой пакет и команды есть в Linux для этого? Приведите пример конфига.
 
-##### Ответ:
+##### Ответ:  
+
+Используется технология `VLAN`. В Linux есть пакет vlan `vlan/focal-updates,now 2.0.4ubuntu1.20.04.1 all`. Можно использовать команду `vconfig add` из пакета  
+
+```bash
+vagrant@vagrant:~$ sudo vconfig add eth0 10
+
+Warning: vconfig is deprecated and might be removed in the future, please migrate to ip(route2) as soon as possible!
+vagrant@vagrant:~$ sudo ip link set eth0.10 up
+vagrant@vagrant:~$ sudo ip a add 192.168.2.227/255.255.255.0 dev eth0.10
+vagrant@vagrant:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:59:cb:31 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic eth0
+       valid_lft 48648sec preferred_lft 48648sec
+    inet6 fe80::a00:27ff:fe59:cb31/64 scope link
+       valid_lft forever preferred_lft forever
+3: eth0.10@eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 08:00:27:59:cb:31 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.2.227/24 scope global eth0.10
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a00:27ff:fe59:cb31/64 scope link
+       valid_lft forever preferred_lft forever
+
+```
+
+Можно осуществить настройку через `ip`, так как нас к этому призывают `please migrate to ip...`
+```bash
+vagrant@vagrant:~$ sudo ip link add link eth0 name eth0.20 type vlan id 20
+vagrant@vagrant:~$ sudo ip a add 192.168.2.229/255.255.255.0 dev eth0.20
+vagrant@vagrant:~$ sudo ip link set eth0.20 up
+vagrant@vagrant:~$ ip a
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:59:cb:31 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic eth0
+       valid_lft 47705sec preferred_lft 47705sec
+    inet6 fe80::a00:27ff:fe59:cb31/64 scope link
+       valid_lft forever preferred_lft forever
+4: eth0.20@eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether 08:00:27:59:cb:31 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.2.229/24 scope global eth0.20
+       valid_lft forever preferred_lft forever
+    inet6 fe80::a00:27ff:fe59:cb31/64 scope link
+       valid_lft forever preferred_lft forever
+```
+
 
 ---
 

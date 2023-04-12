@@ -90,7 +90,24 @@ done
 ### Ваш скрипт:
 
 ```bash
-???
+#!/usr/bin/env bash
+hosts_array=("173.194.222.113" "87.250.250.242" "192.168.0.1")
+while ((1 == 1))
+do
+  for host in ${hosts_array[@]}
+  do
+    nc -vzw3 $host 80 > /dev/null 2>&1
+    if (($? == 0))
+    then
+      echo $(date) ' ' $host ' host is available' >> avail.log
+    else
+      echo $(date) ' ' $host ' host is unavailable' >> error.log
+      exit
+    fi
+  done
+  echo -e >> avail.log
+done
 ```
+![](images/4.PNG)
 
 ---

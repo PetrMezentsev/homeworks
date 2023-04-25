@@ -43,14 +43,25 @@ for result in result_os.split('\n'):
 ### Ваш скрипт:
 
 ```python
-???
+#!/usr/bin/env python3
+
+import os
+
+dir = os.path.abspath(os.curdir)
+
+bash_command = ["cd " +dir , "git status"]
+result_os = os.popen(' && '.join(bash_command)).read()
+for result in result_os.split('\n'):
+    if result.find('modified') != -1:
+        prepare_result = os.path.join(dir, (result.replace('\tmodified:   ', '')))
+        print(prepare_result)
 ```
 
 ### Вывод скрипта при запуске во время тестирования:
 
-```
-???
-```
+
+![](images/2.PNG)
+
 
 ------
 

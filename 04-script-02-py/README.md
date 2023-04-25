@@ -112,13 +112,27 @@ for result in result_os.split('\n'):
 ### Ваш скрипт:
 
 ```python
-???
+#!/usr/bin/env python3
+
+import socket
+import time
+
+addresses = {'drive.google.com':'¯\_(ツ)_/¯', 'mail.google.com':'¯\_(ツ)_/¯', 'google.com':'¯\_(ツ)_/¯'}
+while True:
+    for i in addresses.keys():
+        actual_ip = socket.gethostbyname(i)
+        time.sleep(3)
+        if(actual_ip == addresses[i]):
+            print(f'Пока всё нормально, адреса не изменились {i} - {addresses[i]} = {actual_ip}')
+        else:
+            print(f'[ERROR] {i} IP mismatch: old IP {addresses[i]} != new IP {actual_ip}')
+            addresses[i] = actual_ip
 ```
 
 ### Вывод скрипта при запуске во время тестирования:
 
-```
-???
-```
+
+![](images/4.PNG)
+
 
 ------

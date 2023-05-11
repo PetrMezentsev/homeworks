@@ -1,2 +1,2 @@
 # sysadm-homeworks
-Практические работы модуля SYS-DEV
+Практические работы netology

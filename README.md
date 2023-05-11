@@ -1,2 +1,2 @@
-# sysadm-homeworks
+# homeworks
 Практические работы netology

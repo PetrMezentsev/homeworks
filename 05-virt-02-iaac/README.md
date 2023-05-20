@@ -9,11 +9,11 @@
   - Стабильность среды, устранение дрейфа конфигураций  
   - Более быстрая и эффективная разработка  
 
-Эти преимущества в конечном итоге улучшают показатель time-to-market, что повышает конкурентоспособность бизнеса
+Эти преимущества в конечном итоге улучшают показатель time-to-market, что повышает конкурентоспособность бизнеса.
 
 - Какой из принципов IaaC является основополагающим?
 
-Принцип идемпотентности, когда при последующем выполнении одних и тех же операций мы получаем каждый раз тот же самый результат, что и при первом выполнении
+Принцип идемпотентности, когда при последующем выполнении одних и тех же операций мы получаем каждый раз тот же самый результат, что и при первом выполнении.
 
 ---
 
@@ -36,15 +36,45 @@
 ## Задача 3
 
 Установите на личный компьютер:
-
-- [VirtualBox](https://www.virtualbox.org/),
-- [Vagrant](https://github.com/netology-code/devops-materials),
-- [Terraform](https://github.com/netology-code/devops-materials/blob/master/README.md),
-- Ansible.
-
 *Приложите вывод команд установленных версий каждой из программ, оформленный в Markdown.*
 
-##### Ответ:
+- [VirtualBox](https://www.virtualbox.org/),
+
+```bash
+admin@LE3 ~
+$ vboxmanage -v
+7.0.6r155176
+```
+
+- [Vagrant](https://github.com/netology-code/devops-materials),
+
+```bash
+admin@LE3 ~
+$ vagrant -v
+Vagrant 2.3.4
+```
+
+- [Terraform](https://github.com/netology-code/devops-materials/blob/master/README.md),
+
+```bash
+admin@LE3 ~
+$ terraform -v
+Terraform v1.4.5
+on windows_amd64
+```
+
+- Ansible.
+
+```bash
+admin@LE3 ~
+$ ansible --version
+ansible 2.8.4
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = ['/home/admin/.ansible/plugins/modules', '/usr/share/ansible
+  ansible python module location = /usr/lib/python3.7/site-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 3.7.12 (default, Nov 23 2021, 18:58:07) [GCC 11.2.0]
+```
 
 ---
 

@@ -41,39 +41,35 @@
 - [VirtualBox](https://www.virtualbox.org/),
 
 ```bash
-admin@LE3 ~
-$ vboxmanage -v
-7.0.6r155176
+user@LE3:~$ vboxmanage --version
+6.1.38_Ubuntur153438
 ```
 
 - [Vagrant](https://github.com/netology-code/devops-materials),
 
 ```bash
-admin@LE3 ~
-$ vagrant -v
-Vagrant 2.3.4
+user@LE3:~$ vagrant -v
+Vagrant 2.2.19
 ```
 
 - [Terraform](https://github.com/netology-code/devops-materials/blob/master/README.md),
 
 ```bash
-admin@LE3 ~
-$ terraform -v
-Terraform v1.4.5
-on windows_amd64
+user@LE3:~$ terraform -v
+Terraform v1.4.6
+on linux_amd64
 ```
 
 - Ansible.
 
 ```bash
-admin@LE3 ~
-$ ansible --version
-ansible 2.8.4
-  config file = /etc/ansible/ansible.cfg
-  configured module search path = ['/home/admin/.ansible/plugins/modules', '/usr/share/ansible
-  ansible python module location = /usr/lib/python3.7/site-packages/ansible
+user@LE3:~$ ansible --version
+ansible 2.10.8
+  config file = None
+  configured module search path = ['/home/user/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python3/dist-packages/ansible
   executable location = /usr/bin/ansible
-  python version = 3.7.12 (default, Nov 23 2021, 18:58:07) [GCC 11.2.0]
+  python version = 3.10.6 (main, Mar 10 2023, 10:55:28) [GCC 11.3.0]
 ```
 
 ---

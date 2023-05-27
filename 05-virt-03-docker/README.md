@@ -134,13 +134,46 @@ e60266289ce4: Mounted from library/nginx
 ## Задача 3
 
 - Запустите первый контейнер из образа ***centos*** c любым тегом в фоновом режиме, подключив папку ```/data``` из текущей рабочей директории на хостовой машине в ```/data``` контейнера.
+
+```bash
+papercut@MP:~/data$ sudo docker run -dt -v /home/papercut/data:/data --name centos centos
+6c0a8bc9e08046d98d9c3091aac0af75f17c470c41a3c4e7cff3bd9dd8df2c43
+```
+
 - Запустите второй контейнер из образа ***debian*** в фоновом режиме, подключив папку ```/data``` из текущей рабочей директории на хостовой машине в ```/data``` контейнера.
+
+```bash
+papercut@MP:~/data$ sudo docker run -dt -v /home/papercut/data:/data --name debian debian
+76244ee9c0f2214a45df15063e4a17d16a36a3bdeb37da93d7d82c7f3bcbcf8c
+```
+
 - Подключитесь к первому контейнеру с помощью ```docker exec``` и создайте текстовый файл любого содержания в ```/data```.
+
+```bash
+papercut@MP:~/data$ sudo docker exec -it centos bash
+[root@6c0a8bc9e080 /]# echo 'Hi from centos' > /data/file_from_centos.md
+[root@6c0a8bc9e080 /]# exit
+```
+
 - Добавьте ещё один файл в папку ```/data``` на хостовой машине.
+
+```bash
+papercut@MP:~/data$ echo 'Hi from host' > file_from_host.md
+```
+
 - Подключитесь во второй контейнер и отобразите листинг и содержание файлов в ```/data``` контейнера.
 
-## Задача 4 (*)
+```bash
+papercut@MP:~/data$ sudo docker exec -it debian bash
+root@76244ee9c0f2:/# ls -lah /data
+total 16K
+drwxr-xr-x 2 1000 1000 4.0K May 27 11:32 .
+drwxr-xr-x 1 root root 4.0K May 27 11:30 ..
+-rw-r--r-- 1 root root   15 May 27 11:31 file_from_centos.md
+-rw-r--r-- 1 1000 1000   13 May 27 11:32 file_from_host.md
+root@76244ee9c0f2:/# cat /data/file_from_centos.md
+Hi from centos
+root@76244ee9c0f2:/# cat /data/file_from_host.md
+Hi from host
+```
 
-Воспроизведите практическую часть лекции самостоятельно.
-
-Соберите Docker-образ с Ansible, загрузите на Docker Hub и пришлите ссылку вместе с остальными ответами к задачам.

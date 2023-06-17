@@ -59,7 +59,7 @@ CAP-теореме. Какой классификации по CAP-теорем�
 
 ##### Ответ:
 
-CAP: CA 
+CAP: CA  
 PACELC: PC/EL
 
 ~
@@ -68,7 +68,7 @@ PACELC: PC/EL
 
 ##### Ответ:
 
-CAP: AP
+CAP: AP  
 PACELC: PA/EC 
 
 ~
@@ -77,7 +77,7 @@ PACELC: PA/EC
 
 ##### Ответ:
 
-CAP: CP
+CAP: CP  
 PACELC: PC/EC
 
 ~

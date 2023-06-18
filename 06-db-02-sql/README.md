@@ -271,20 +271,179 @@ WHERE booking IS NOT null;
 
 Создайте бэкап БД test_db и поместите его в volume, предназначенный для бэкапов (см. задачу 1).
 
+```bash
+root@fb197245ec79:/data/backup/postgres# pg_dump -U filewalker test_db > /data/backup/postgres/test_db.dump
+```
+
 Остановите контейнер с PostgreSQL, но не удаляйте volumes.
+
+```bash
+papercut@MP:~/06-db-02-sql$ sudo docker stop 06-db-02-sql_postgres_1
+
+#Очистил содержимое по пути  /home/papercut/06-db-02-sql/pgdata на хостовой машине
+```
 
 Поднимите новый пустой контейнер с PostgreSQL.
 
+```bash
+papercut@MP:~/06-db-02-sql$ sudo docker-compose up -d
+Starting 06-db-02-sql_postgres_1 ... done
+papercut@MP:~/06-db-02-sql$ sudo docker exec -ti 06-db-02-sql_postgres_1 bash
+root@fb197245ec79:/# psql -U filewalker
+psql (12.15 (Debian 12.15-1.pgdg120+1))
+Type "help" for help.
+
+filewalker=# \l
+                                    List of databases
+    Name    |   Owner    | Encoding |  Collate   |   Ctype    |     Access privileges
+------------+------------+----------+------------+------------+---------------------------
+ filewalker | filewalker | UTF8     | en_US.utf8 | en_US.utf8 |
+ postgres   | filewalker | UTF8     | en_US.utf8 | en_US.utf8 |
+ template0  | filewalker | UTF8     | en_US.utf8 | en_US.utf8 | =c/filewalker            +
+            |            |          |            |            | filewalker=CTc/filewalker
+ template1  | filewalker | UTF8     | en_US.utf8 | en_US.utf8 | =c/filewalker            +
+            |            |          |            |            | filewalker=CTc/filewalker
+(4 rows)
+```
+
 Восстановите БД test_db в новом контейнере.
+
+```sql
+root@fb197245ec79:/data/backup/postgres# psql -U filewalker
+psql (12.15 (Debian 12.15-1.pgdg120+1))
+Type "help" for help.
+
+filewalker=# CREATE DATABASE test_db;
+CREATE DATABASE
+filewalker=# \l
+                                    List of databases
+    Name    |   Owner    | Encoding |  Collate   |   Ctype    |     Access privileges
+------------+------------+----------+------------+------------+---------------------------
+ filewalker | filewalker | UTF8     | en_US.utf8 | en_US.utf8 |
+ postgres   | filewalker | UTF8     | en_US.utf8 | en_US.utf8 |
+ template0  | filewalker | UTF8     | en_US.utf8 | en_US.utf8 | =c/filewalker            +
+            |            |          |            |            | filewalker=CTc/filewalker
+ template1  | filewalker | UTF8     | en_US.utf8 | en_US.utf8 | =c/filewalker            +
+            |            |          |            |            | filewalker=CTc/filewalker
+ test_db    | filewalker | UTF8     | en_US.utf8 | en_US.utf8 |
+(5 rows)
+
+filewalker=# \du
+                                    List of roles
+ Role name  |                         Attributes                         | Member of
+------------+------------------------------------------------------------+-----------
+ filewalker | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+
+filewalker=# CREATE USER "test-admin-user" WITH LOGIN;
+CREATE ROLE
+filewalker=# CREATE USER "test-simple-user" WITH LOGIN;
+CREATE ROLE
+filewalker=# \du
+                                       List of roles
+    Role name     |                         Attributes                         | Member of
+------------------+------------------------------------------------------------+-----------
+ filewalker       | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+ test-admin-user  |                                                            | {}
+ test-simple-user |                                                            | {}
+
+filewalker=# \q
+root@fb197245ec79:/data/backup/postgres# psql -U filewalker test_db < test_db.dump
+SET
+SET
+SET
+SET
+SET
+ set_config
+------------
+
+(1 row)
+
+SET
+SET
+SET
+SET
+SET
+SET
+CREATE TABLE
+ALTER TABLE
+CREATE SEQUENCE
+ALTER TABLE
+ALTER SEQUENCE
+CREATE TABLE
+ALTER TABLE
+CREATE SEQUENCE
+ALTER TABLE
+ALTER SEQUENCE
+ALTER TABLE
+ALTER TABLE
+COPY 5
+COPY 5
+ setval
+--------
+      5
+(1 row)
+
+ setval
+--------
+      5
+(1 row)
+
+ALTER TABLE
+ALTER TABLE
+CREATE INDEX
+ALTER TABLE
+GRANT
+GRANT
+GRANT
+GRANT
+
+root@fb197245ec79:/data/backup/postgres# psql -U filewalker
+psql (12.15 (Debian 12.15-1.pgdg120+1))
+Type "help" for help.
+
+filewalker=# \l
+                                    List of databases
+    Name    |   Owner    | Encoding |  Collate   |   Ctype    |     Access privileges
+------------+------------+----------+------------+------------+---------------------------
+ filewalker | filewalker | UTF8     | en_US.utf8 | en_US.utf8 |
+ postgres   | filewalker | UTF8     | en_US.utf8 | en_US.utf8 |
+ template0  | filewalker | UTF8     | en_US.utf8 | en_US.utf8 | =c/filewalker            +
+            |            |          |            |            | filewalker=CTc/filewalker
+ template1  | filewalker | UTF8     | en_US.utf8 | en_US.utf8 | =c/filewalker            +
+            |            |          |            |            | filewalker=CTc/filewalker
+ test_db    | filewalker | UTF8     | en_US.utf8 | en_US.utf8 |
+(5 rows)
+
+filewalker=# \c test_db
+You are now connected to database "test_db" as user "filewalker".
+test_db=# \d orders
+                            Table "public.orders"
+ Column |  Type   | Collation | Nullable |              Default
+--------+---------+-----------+----------+------------------------------------
+ id     | integer |           | not null | nextval('orders_id_seq'::regclass)
+ name   | text    |           |          |
+ price  | integer |           |          |
+Indexes:
+    "orders_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "clients" CONSTRAINT "clients_booking_fkey" FOREIGN KEY (booking) REFERENCES orders(id)
+
+test_db=# \d clients
+                                     Table "public.clients"
+  Column  |          Type          | Collation | Nullable |               Default
+----------+------------------------+-----------+----------+-------------------------------------
+ id       | integer                |           | not null | nextval('clients_id_seq'::regclass)
+ lastname | character varying(100) |           |          |
+ country  | character varying(100) |           |          |
+ booking  | integer                |           |          |
+Indexes:
+    "clients_pkey" PRIMARY KEY, btree (id)
+    "clients_country_idx" btree (country)
+Foreign-key constraints:
+    "clients_booking_fkey" FOREIGN KEY (booking) REFERENCES orders(id)
+ 
+```
 
 Приведите список операций, который вы применяли для бэкапа данных и восстановления. 
 
 ---
-
-### Как cдавать задание
-
-Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
-
----
-
-

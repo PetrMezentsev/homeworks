@@ -210,6 +210,35 @@ table  | rows_count
  
 Подсказка: используйте директиву `UPDATE`.
 
+##### Ответ:
+
+```bash
+UPDATE clients SET "booking"=3 WHERE id=1;
+UPDATE clients SET "booking"=4 WHERE id=2;
+UPDATE clients SET "booking"=5 WHERE id=3;
+
+SELECT lastname, booking, orders.name
+FROM clients
+INNER JOIN orders ON booking=orders.id;
+       lastname       | booking |  name
+----------------------+---------+---------
+ Иванов Иван Иванович |       3 | Книга
+ Петров Петр Петрович |       4 | Монитор
+ Иоганн Себастьян Бах |       5 | Гитара
+(3 rows)
+
+SELECT * FROM clients
+WHERE booking IS NOT null;
+ id |       lastname       | country | booking
+----+----------------------+---------+---------
+  1 | Иванов Иван Иванович | USA     |       3
+  2 | Петров Петр Петрович | Canada  |       4
+  3 | Иоганн Себастьян Бах | Japan   |       5
+(3 rows)
+```
+
+#
+
 ## Задача 5
 
 Получите полную информацию по выполнению запроса выдачи всех пользователей из задачи 4 

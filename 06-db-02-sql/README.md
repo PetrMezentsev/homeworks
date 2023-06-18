@@ -55,9 +55,74 @@ services:
 Приведите:
 
 - итоговый список БД после выполнения пунктов выше;
+
+```bash
+test_db=# \l
+                                    List of databases
+    Name    |   Owner    | Encoding |  Collate   |   Ctype    |     Access privileges
+------------+------------+----------+------------+------------+---------------------------
+ filewalker | filewalker | UTF8     | en_US.utf8 | en_US.utf8 |
+ postgres   | filewalker | UTF8     | en_US.utf8 | en_US.utf8 |
+ template0  | filewalker | UTF8     | en_US.utf8 | en_US.utf8 | =c/filewalker            +
+            |            |          |            |            | filewalker=CTc/filewalker
+ template1  | filewalker | UTF8     | en_US.utf8 | en_US.utf8 | =c/filewalker            +
+            |            |          |            |            | filewalker=CTc/filewalker
+ test_db    | filewalker | UTF8     | en_US.utf8 | en_US.utf8 |
+(5 rows)
+```
+
 - описание таблиц (describe);
+
+```bash
+test_db=# \d orders
+                            Table "public.orders"
+ Column |  Type   | Collation | Nullable |              Default
+--------+---------+-----------+----------+------------------------------------
+ id     | integer |           | not null | nextval('orders_id_seq'::regclass)
+ name   | text    |           |          |
+ price  | integer |           |          |
+Indexes:
+    "orders_pkey" PRIMARY KEY, btree (id)
+Referenced by:
+    TABLE "clients" CONSTRAINT "clients_booking_fkey" FOREIGN KEY (booking) REFERENCES orders(id)
+
+test_db=# \d clients
+                                     Table "public.clients"
+  Column  |          Type          | Collation | Nullable |               Default
+----------+------------------------+-----------+----------+-------------------------------------
+ id       | integer                |           | not null | nextval('clients_id_seq'::regclass)
+ lastname | character varying(100) |           |          |
+ country  | character varying(100) |           |          |
+ booking  | integer                |           |          |
+Indexes:
+    "clients_pkey" PRIMARY KEY, btree (id)
+    "clients_country_idx" btree (country)
+Foreign-key constraints:
+    "clients_booking_fkey" FOREIGN KEY (booking) REFERENCES orders(id)
+```
+
 - SQL-запрос для выдачи списка пользователей с правами над таблицами test_db;
+
+```sql
+SELECT table_name, array_agg(privilege_type), grantee
+FROM information_schema.table_privileges
+WHERE table_name = 'orders' OR table_name = 'clients'
+GROUP BY table_name, grantee;
+```
+
 - список пользователей с правами над таблицами test_db.
+
+```bash
+ table_name |                         array_agg                         |     grantee
+------------+-----------------------------------------------------------+------------------
+ clients    | {INSERT,TRIGGER,REFERENCES,TRUNCATE,DELETE,UPDATE,SELECT} | filewalker
+ clients    | {INSERT,TRIGGER,REFERENCES,TRUNCATE,DELETE,UPDATE,SELECT} | test-admin-user
+ clients    | {DELETE,INSERT,SELECT,UPDATE}                             | test-simple-user
+ orders     | {INSERT,TRIGGER,REFERENCES,TRUNCATE,DELETE,UPDATE,SELECT} | filewalker
+ orders     | {INSERT,TRIGGER,REFERENCES,TRUNCATE,DELETE,UPDATE,SELECT} | test-admin-user
+ orders     | {DELETE,SELECT,UPDATE,INSERT}                             | test-simple-user
+(6 rows)
+```
 
 ## Задача 3
 

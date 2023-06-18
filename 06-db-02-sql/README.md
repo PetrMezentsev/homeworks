@@ -156,6 +156,42 @@ GROUP BY table_name, grantee;
     - запросы,
     - результаты их выполнения.
 
+##### Ответ:
+
+```bash
+INSERT INTO orders (name, price)
+VALUES
+('Шоколад', '10'),
+('Принтер', '3000'),
+('Книга', '500'),
+('Монитор', '7000'),
+('Гитара', '4000')
+;
+INSERT 0 5
+
+INSERT INTO clients (lastname, country)
+VALUES
+('Иванов Иван Иванович', 'USA'),
+('Петров Петр Петрович', 'Canada'),
+('Иоганн Себастьян Бах', 'Japan'),
+('Ронни Джеймс Дио', 'Russia'),
+('Ritchie Blackmore', 'Russia')
+;
+INSERT 0 5
+
+SELECT 'orders' AS table,  COUNT(*) AS rows_count FROM orders
+UNION ALL 
+SELECT 'clients' AS table,  COUNT(*) AS rows_count FROM clients;
+
+table  | rows_count
+---------+------------
+ orders  |          5
+ clients |          5
+(2 rows)
+```
+
+#
+
 ## Задача 4
 
 Часть пользователей из таблицы clients решили оформить заказы из таблицы orders.

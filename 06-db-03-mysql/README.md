@@ -5,22 +5,152 @@
 Используя Docker, поднимите инстанс MySQL (версию 8). Данные БД сохраните в volume.
 
 ```bash
+user@LE3:~/06-db-03-mysql$ cat docker-compose.yml
+version: '3.9'
+services:
+  mysql:
+    image: mysql:8
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=test_db
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./backup:/data/backup/mysql
+    ports:
+      - "3306:3306"
+```
+```bash
+user@LE3:~/06-db-03-mysql$ sudo docker-compose ps
+NAME                     COMMAND                  SERVICE             STATUS              PORTS
+06-db-03-mysql-mysql-1   "docker-entrypoint.s…"   mysql               running             0.0.0.0:3306->3306/tcp, :::3306->3306/tcp
 ```
 
 Изучите [бэкап БД](https://github.com/netology-code/virt-homeworks/tree/virt-11/06-db-03-mysql/test_data) и 
 восстановитесь из него.
 
+```bash
+user@LE3:~/06-db-03-mysql/backup$ sudo docker exec -it 06-db-03-mysql-mysql-1 bash
+bash-4.4# ls -lh /data/backup/mysql/
+total 164K
+-rw-r--r-- 1 root root 164K Jun 20 02:58 test_dump.sql
+bash-4.4# mysql -u root -p test_db < /data/backup/mysql/test_dump.sql
+Enter password:
+```
+
 Перейдите в управляющую консоль `mysql` внутри контейнера.
+
+```bash
+bash-4.4# mysql -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 12
+Server version: 8.0.33 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql>
+```
 
 Используя команду `\h`, получите список управляющих команд.
 
+```bash
+mysql> \h
+
+For information about MySQL products and services, visit:
+   http://www.mysql.com/
+For developer information, including the MySQL Reference Manual, visit:
+   http://dev.mysql.com/
+To buy MySQL Enterprise support, training, or other products, visit:
+   https://shop.mysql.com/
+
+List of all MySQL commands:
+Note that all text commands must be first on line and end with ';'
+?         (\?) Synonym for `help'.
+clear     (\c) Clear the current input statement.
+connect   (\r) Reconnect to the server. Optional arguments are db and host.
+delimiter (\d) Set statement delimiter.
+edit      (\e) Edit command with $EDITOR.
+ego       (\G) Send command to mysql server, display result vertically.
+exit      (\q) Exit mysql. Same as quit.
+go        (\g) Send command to mysql server.
+help      (\h) Display this help.
+nopager   (\n) Disable pager, print to stdout.
+notee     (\t) Don't write into outfile.
+pager     (\P) Set PAGER [to_pager]. Print the query results via PAGER.
+print     (\p) Print current command.
+prompt    (\R) Change your mysql prompt.
+quit      (\q) Quit mysql.
+rehash    (\#) Rebuild completion hash.
+source    (\.) Execute an SQL script file. Takes a file name as an argument.
+status    (\s) Get status information from the server.
+system    (\!) Execute a system shell command.
+tee       (\T) Set outfile [to_outfile]. Append everything into given outfile.
+use       (\u) Use another database. Takes database name as argument.
+charset   (\C) Switch to another charset. Might be needed for processing binlog with multi-byte charsets.
+warnings  (\W) Show warnings after every statement.
+nowarning (\w) Don't show warnings after every statement.
+resetconnection(\x) Clean session context.
+query_attributes Sets string parameters (name1 value1 name2 value2 ...) for the next query to pick up.
+ssl_session_data_print Serializes the current SSL session data to stdout or file
+
+For server side help, type 'help contents'
+```
+
 Найдите команду для выдачи статуса БД и **приведите в ответе** из её вывода версию сервера БД.
+
+```bash
+mysql> \s
+--------------
+mysql  Ver 8.0.33 for Linux on x86_64 (MySQL Community Server - GPL)
+```
 
 Подключитесь к восстановленной БД и получите список таблиц из этой БД.
 
+```bash
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test_db            |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> use test_db;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_test_db |
++-------------------+
+| orders            |
++-------------------+
+1 row in set (0.01 sec)
+```
+
 **Приведите в ответе** количество записей с `price` > 300.
 
-В следующих заданиях мы будем продолжать работу с этим контейнером.
+```sql
+mysql> SELECT count(*) FROM orders WHERE price > 300;
++----------+
+| count(*) |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+```
 
 ## Задача 2
 

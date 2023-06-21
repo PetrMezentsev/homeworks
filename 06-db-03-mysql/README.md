@@ -197,13 +197,66 @@ mysql> SELECT * FROM INFORMATION_SCHEMA.USER_ATTRIBUTES WHERE USER = 'test';
 ## Задача 3
 
 Установите профилирование `SET profiling = 1`.
+
+```sql
+mysql> SET profiling = 1;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+```
+
 Изучите вывод профилирования команд `SHOW PROFILES;`.
 
+```sql
+mysql> SHOW PROFILES;
++----------+------------+-------------------+
+| Query_ID | Duration   | Query             |
++----------+------------+-------------------+
+|        1 | 0.00234675 | show databases    |
+|        2 | 0.00053800 | SELECT DATABASE() |
+|        3 | 0.00080400 | show databases    |
+|        4 | 0.00215925 | show tables       |
+|        5 | 0.00040100 | SELECT DATABASE() |
+|        6 | 0.00259925 | show databases    |
+|        7 | 0.00313025 | show tables       |
++----------+------------+-------------------+
+7 rows in set, 1 warning (0.00 sec)
+```
+
 Исследуйте, какой `engine` используется в таблице БД `test_db` и **приведите в ответе**.
+
+```sql
+mysql> SELECT table_name, engine
+    -> FROM INFORMATION_SCHEMA.TABLES
+    -> WHERE TABLE_SCHEMA = 'test_db';
++------------+--------+
+| TABLE_NAME | ENGINE |
++------------+--------+
+| orders     | InnoDB |
++------------+--------+
+1 row in set (0.01 sec)
+```
 
 Измените `engine` и **приведите время выполнения и запрос на изменения из профайлера в ответе**:
 - на `MyISAM`,
 - на `InnoDB`.
+
+```sql
+mysql> ALTER TABLE orders ENGINE = MyISAM;
+Query OK, 5 rows affected (0.06 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE orders ENGINE = InnoDB;
+Query OK, 5 rows affected (0.08 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SHOW PROFILES;
++----------+------------+-----------------------------------------------------------------------------------------+
+| Query_ID | Duration   | Query                                                                                   |
++----------+------------+-----------------------------------------------------------------------------------------+
+|       11 | 0.06521075 | ALTER TABLE orders ENGINE = MyISAM                                                      |
+|       12 | 0.08207675 | ALTER TABLE orders ENGINE = InnoDB                                                      |
++----------+------------+-----------------------------------------------------------------------------------------+
+12 rows in set, 1 warning (0.00 sec)
+```
 
 ## Задача 4 
 

@@ -112,18 +112,94 @@ root@4ad8fdafbbe3:/#
 
 Используя `psql`, создайте БД `test_database`.
 
+```bash
+postgres=# CREATE DATABASE test_database;
+CREATE DATABASE
+```
+
 Изучите [бэкап БД](https://github.com/netology-code/virt-homeworks/tree/virt-11/06-db-04-postgresql/test_data).
 
 Восстановите бэкап БД в `test_database`.
 
+```bash
+root@4ad8fdafbbe3:/data/backup/postgres# psql -U postgres test_database < /data/backup/postgres/test_dump.sql
+SET
+SET
+SET
+SET
+SET
+ set_config
+------------
+
+(1 row)
+
+SET
+SET
+SET
+SET
+SET
+SET
+CREATE TABLE
+ALTER TABLE
+CREATE SEQUENCE
+ALTER TABLE
+ALTER SEQUENCE
+ALTER TABLE
+COPY 8
+ setval
+--------
+      8
+(1 row)
+
+ALTER TABLE
+```
+
 Перейдите в управляющую консоль `psql` внутри контейнера.
 
+```bash
+root@4ad8fdafbbe3:/data/backup/postgres# psql -U postgres
+psql (13.11 (Debian 13.11-1.pgdg120+1))
+Type "help" for help.
+
+postgres=#
+```
+
 Подключитесь к восстановленной БД и проведите операцию ANALYZE для сбора статистики по таблице.
+
+```bash
+postgres=# \c test_database
+You are now connected to database "test_database" as user "postgres".
+test_database=# \d+
+                                   List of relations
+ Schema |     Name      |   Type   |  Owner   | Persistence |    Size    | Description
+--------+---------------+----------+----------+-------------+------------+-------------
+ public | orders        | table    | postgres | permanent   | 8192 bytes |
+ public | orders_id_seq | sequence | postgres | permanent   | 8192 bytes |
+(2 rows)
+
+test_database=# ANALYZE VERBOSE orders;
+INFO:  analyzing "public.orders"
+INFO:  "orders": scanned 1 of 1 pages, containing 8 live rows and 0 dead rows; 8 rows in sample, 8 estimated total rows
+ANALYZE
+test_database=#
+```
 
 Используя таблицу [pg_stats](https://postgrespro.ru/docs/postgresql/12/view-pg-stats), найдите столбец таблицы `orders` 
 с наибольшим средним значением размера элементов в байтах.
 
 **Приведите в ответе** команду, которую вы использовали для вычисления, и полученный результат.
+
+```sql
+test_database=# SELECT tablename, attname, avg_width
+FROM pg_stats
+WHERE tablename = 'orders'
+ORDER BY avg_width DESC
+LIMIT 1;
+ tablename | attname | avg_width
+-----------+---------+-----------
+ orders    | title   |        16
+(1 row)
+```
 
 ## Задача 3
 

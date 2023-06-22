@@ -4,6 +4,30 @@
 
 Используя Docker, поднимите инстанс PostgreSQL (версию 13). Данные БД сохраните в volume.
 
+```bash
+user@LE3:~/06-db-04-postgresql$ cat docker-compose.yml
+version: '3.9'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data
+      - ./pg_backup:/data/backup/postgres
+    ports:
+      - "5432:5432"
+    restart: always
+```
+
+```bash
+user@LE3:~/06-db-04-postgresql$ sudo docker ps
+CONTAINER ID   IMAGE         COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+4ad8fdafbbe3   postgres:13   "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes   0.0.0.0:5432->5432/tcp, :::5432->5432/tcp   06-db-04-postgresql-db-1
+```
+
 Подключитесь к БД PostgreSQL, используя `psql`.
 
 Воспользуйтесь командой `\?` для вывода подсказки по имеющимся в `psql` управляющим командам.

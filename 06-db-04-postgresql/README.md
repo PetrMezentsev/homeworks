@@ -209,7 +209,32 @@ LIMIT 1;
 
 Предложите SQL-транзакцию для проведения этой операции.
 
+```sql
+test_database=# BEGIN;
+BEGIN
+test_database=*# CREATE TABLE orders_temp (LIKE orders INCLUDING DEFAULTS) PARTITION BY RANGE (price);
+CREATE TABLE
+test_database=*# CREATE TABLE orders_1 PARTITION OF orders_temp FOR VALUES FROM (500) TO (MAXVALUE);
+CREATE TABLE
+test_database=*# CREATE TABLE orders_2 PARTITION OF orders_temp FOR VALUES FROM (MINVALUE) TO (500);
+CREATE TABLE
+test_database=*# INSERT INTO orders_temp SELECT * FROM orders;
+INSERT 0 8
+test_database=*# ALTER TABLE orders RENAME TO orders_old;
+ALTER TABLE
+test_database=*# ALTER TABLE orders_temp RENAME TO orders;
+ALTER TABLE
+test_database=*# COMMIT;
+COMMIT
+```
+
 Можно ли было изначально исключить ручное разбиение при проектировании таблицы orders?
+
+##### Ответ:
+
+Если бы на этапе проектирования мы сразу создали партиционированную таблицу, то избежали бы последующего манипулирования с разбиением. Нюанс в том, что существующую непартиционированную таблицу нельзя сделать партиционированной, и наоборот. Это свойство определяется на этапе создания таблиц.
+
+#
 
 ## Задача 4
 

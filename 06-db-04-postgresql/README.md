@@ -240,6 +240,18 @@ COMMIT
 
 Используя утилиту `pg_dump`, создайте бекап БД `test_database`.
 
+```bash
+root@4ad8fdafbbe3:/data/backup/postgres# pg_dump -U postgres test_database > /data/backup/postgres/test_database23062023.sql
+root@4ad8fdafbbe3:/data/backup/postgres# ls
+test_database23062023.sql  test_dump.sql
+```
+
 Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца `title` для таблиц `test_database`?
+
+```bash
+#Можно заменить значения в файле бэкапа с помощью sed
+
+root@4ad8fdafbbe3:/data/backup/postgres# sed -i.bak 's/title character varying(80) NOT NULL/title character varying(80) NOT NULL UNIQUE/g' /data/backup/postgres/test_database23062023.sql
+```
 
 ---

@@ -9,14 +9,14 @@
 2. Скачайте на свой ПК данный git репозиторий. Исходный код для выполнения задания расположен в директории **01/src**.
 3. Убедитесь, что в вашей ОС установлен docker.
 
-```ps
+```powershell
 PS D:\> docker --version
 Docker version 24.0.2, build cb74dfc
 ```
  
 4. Зарегистрируйте аккаунт на сайте https://hub.docker.com/, выполните команду docker login и введите логин/пароль.
 
-```ps
+```powershell
 PS D:\> docker login
 Authenticating with existing credentials...
 Login Succeeded
@@ -43,7 +43,7 @@ For better security, log in with a limited-privilege personal access token. Lear
 3. Выполните код проекта. Найдите  в State-файле секретное содержимое созданного ресурса **random_password**, пришлите в качестве ответа конкретный ключ и его значение.
 
 ##### Ответ:
-```tf
+```terraform
 "result": "sCwL9g2NSMvpAu7r"
 ```
 
@@ -58,16 +58,42 @@ For better security, log in with a limited-privilege personal access token. Lear
 
 5. Выполните код. В качестве ответа приложите вывод команды ```docker ps```
 
-
+```powershell
+PS D:\ter\01\src> docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS         PORTS                  NAMES
+abf96c1883cd   021283c8eb95   "/docker-entrypoint.…"   3 minutes ago   Up 3 minutes   0.0.0.0:8000->80/tcp   example_sCwL9g2NSMvpAu7r
+```
 
 6. Замените имя docker-контейнера в блоке кода на ```hello_world```, выполните команду ```terraform apply -auto-approve```. Объясните своими словами, в чем может быть опасность применения ключа  ```-auto-approve``` ? В качестве ответа дополнительно приложите вывод команды ```docker ps```
 
+##### Ответ:  
+Ключ `-auto-approve` применяет все изменения без ожидания подтверждения от пользователя в виде `yes`. Мы получаем применение потенциально некорректного плана без возможности его изучения и внесения корректировок. Так как все могут ошибаться, то произойдёт как минимум потеря времени на возвращение инфраструктуры к нужному виду.
 
+```powershell
+PS D:\ter\01\src> docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS              PORTS                  NAMES
+90c4414fc2ce   021283c8eb95   "/docker-entrypoint.…"   About a minute ago   Up About a minute   0.0.0.0:8000->80/tcp   hello_world
+```
 
 7. Уничтожьте созданные ресурсы с помощью **terraform**. Убедитесь, что все ресурсы удалены. Приложите содержимое файла **terraform.tfstate**.
 
+```terraform
+{
+  "version": 4,
+  "terraform_version": "1.5.3",
+  "serial": 12,
+  "lineage": "fec9224d-734e-2993-3604-b811fd1b5962",
+  "outputs": {},
+  "resources": [],
+  "check_results": null
+}
+```
 
 8. Объясните, почему при этом не был удален docker образ **nginx:latest** ? Ответ подкрепите выдержкой из документации провайдера.
 
+В файле `main.tf` мы использовали аргумент `keep_locally = true` в ресурсе `"docker_image" "nginx"`. Это логическое значение определяет, оставлять ли локально скачанные образы при разрушении инфраструктуры.
 
+```txt
+keep_locally - (Optional, boolean) If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker local storage on destroy operation.
+```
 ------

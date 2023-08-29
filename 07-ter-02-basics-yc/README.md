@@ -13,12 +13,39 @@
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/4a3f65ec-a4bb-4e47-86e8-538089284ed2)  
 
 4. Инициализируйте проект, выполните код. Исправьте намеренно допущенные синтаксические ошибки. Ищите внимательно, посимвольно. Ответьте, в чём заключается их суть.
+##### Ответ:
+Ошибка заключается в том, что платформа `standart-v4` не найдена  
+
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/da66e664-d2b1-44dc-a574-f1e2430b5193)  
+
+Поправил в `main.tf` платформу на `standard-v1`, согласно перечню платформ из документации (https://cloud.yandex.com/en/docs/compute/concepts/vm-platforms)
+
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/2154a7f9-d1ab-47b1-9e00-2ac3295a251c)
+
+Следующая ошибка о допустимом количестве ядер. Должно быть `2` либо `4`
+
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/78222b17-ef7b-4ff6-a3bf-ee65df997696)  
+
+Поправил в `main.tf` параметр `cores = 2`. Ресурсы создались  
+
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/ae9716de-51e0-49f8-b9f8-9277c1e959c7)
+
+
+
+
+
 5. Ответьте, как в процессе обучения могут пригодиться параметры ```preemptible = true``` и ```core_fraction=5``` в параметрах ВМ. Ответ в документации Yandex Cloud.
 
 В качестве решения приложите:
 
 - скриншот ЛК Yandex Cloud с созданной ВМ;
-- скриншот успешного подключения к консоли ВМ через ssh. К OS ubuntu необходимо подключаться под пользователем ubuntu: "ssh ubuntu@vm_ip_address";
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/c97317bc-995e-4ec5-9964-d6f88a1b76d3)
+
+
+- скриншот успешного подключения к консоли ВМ через ssh. К OS ubuntu необходимо подключаться под пользователем ubuntu: "ssh ubuntu@vm_ip_address";  
+
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/3d480bef-f08b-459a-9ec4-45f210cdc38e)
+
 - ответы на вопросы.
 
 

@@ -146,9 +146,22 @@ external_ip_addr_web = "netology-develop-platform-web = 158.160.34.215"
 ### Задание 6
 
 1. Вместо использования трёх переменных  ".._cores",".._memory",".._core_fraction" в блоке  resources {...}, объедините их в переменные типа **map** с именами "vm_web_resources" и "vm_db_resources". В качестве продвинутой практики попробуйте создать одну map-переменную **vms_resources** и уже внутри неё конфиги обеих ВМ — вложенный map.
-2. Также поступите с блоком **metadata {serial-port-enable, ssh-keys}**, эта переменная должна быть общая для всех ваших ВМ.
+2. Также поступите с блоком **metadata {serial-port-enable, ssh-keys}**, эта переменная должна быть общая для всех ваших ВМ.  
+Создал `locals` для 1 и 2 пункта:
+```terraform
+locals {
+    vm_web_resources = {cores = "2", memory = "1", fraction = "5"}
+    vm_db_resources = {cores = "2", memory = "2", fraction = "20"}
+    serial_port = "1"
+    ssh_key = "ubuntu:${var.vms_ssh_root_key}"
+}
+```
+Заменил вручную прописанные ресурсы с количеством ядер, памяти, процента использования CPU, serial-port и ssh-key в `main.tf` на переменные из `locals.tf`  
+
 3. Найдите и удалите все более не используемые переменные проекта.
-4. Проверьте terraform plan. Изменений быть не должно.
+4. Проверьте terraform plan. Изменений быть не должно.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/934cbbfe-0e9d-4512-a463-9fde7a525900)
+
 
 ------
 

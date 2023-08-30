@@ -97,8 +97,50 @@
 ### Задание 5
 
 1. В файле locals.tf опишите в **одном** local-блоке имя каждой ВМ, используйте интерполяцию ${..} с несколькими переменными по примеру из лекции.
-2. Замените переменные с именами ВМ из файла variables.tf на созданные вами local-переменные.
-3. Примените изменения.
+```terraform
+locals {
+  vm_web_from_locals = "${var.locals_interpolation_1st_item_mentor}-${var.locals_interpolation_2nd_item_class}-${var.locals_interpolation_3rd_item_platform}-${var.locals_interpolation_4th_item_web}"
+  vm_db_from_locals  = "${var.locals_interpolation_1st_item_mentor}-${var.locals_interpolation_2nd_item_class}-${var.locals_interpolation_3rd_item_platform}-${var.locals_interpolation_4th_item_db}"
+}
+```
+2. Замените переменные с именами ВМ из файла variables.tf на созданные вами local-переменные.  
+```terraform
+resource "yandex_compute_instance" "platform" {
+  name        = local.vm_web_from_locals
+
+...
+
+resource "yandex_compute_instance" "platform_db" {
+  name        = local.vm_db_from_locals
+```
+3. Примените изменения.  
+```terraform
+root@LE3:/home/user/terraform/ter-homeworks/02# terraform apply
+...
+Enter a value: yes
+
+yandex_vpc_network.develop: Creating...
+yandex_vpc_network.develop: Creation complete after 2s [id=enpnfg532r3ea6c11ibl]
+yandex_vpc_subnet.develop: Creating...
+yandex_vpc_subnet.develop: Creation complete after 1s [id=e9bl575mvlhsdi98idsj]
+yandex_compute_instance.platform_db: Creating...
+yandex_compute_instance.platform: Creating...
+yandex_compute_instance.platform: Still creating... [10s elapsed]
+yandex_compute_instance.platform_db: Still creating... [10s elapsed]
+yandex_compute_instance.platform: Still creating... [20s elapsed]
+yandex_compute_instance.platform_db: Still creating... [20s elapsed]
+yandex_compute_instance.platform_db: Still creating... [30s elapsed]
+yandex_compute_instance.platform: Still creating... [30s elapsed]
+yandex_compute_instance.platform: Creation complete after 39s [id=fhm0tacrbscedos0uspv]
+yandex_compute_instance.platform_db: Creation complete after 39s [id=fhmtuvus8nsrr0vbridu]
+
+Apply complete! Resources: 4 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+external_ip_addr_db = "netology-develop-platform-db = 158.160.112.121"
+external_ip_addr_web = "netology-develop-platform-web = 158.160.34.215"
+```
 
 
 ### Задание 6

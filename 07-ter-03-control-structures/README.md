@@ -73,6 +73,9 @@ Apply complete! Resources: 7 added, 0 changed, 0 destroyed.
 2. Инвентарь должен содержать 3 группы [webservers], [databases], [storage] и быть динамическим, т. е. обработать как группу из 2-х ВМ, так и 999 ВМ.
 4. Выполните код. Приложите скриншот получившегося файла. 
 
+##### Ответ:
+![111](https://github.com/PetrMezentsev/homeworks/assets/124135353/e6f3bfff-b85b-44fe-b9d9-ae2ec6af25a4)
+
 ------
 
 

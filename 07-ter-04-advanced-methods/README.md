@@ -18,10 +18,63 @@
 ### Задание 2
 
 1. Напишите локальный модуль vpc, который будет создавать 2 ресурса: **одну** сеть и **одну** подсеть в зоне, объявленной при вызове модуля, например: ```ru-central1-a```.
-2. Вы должны передать в модуль переменные с названием сети, zone и v4_cidr_blocks.
-3. Модуль должен возвращать в root module с помощью output информацию о yandex_vpc_subnet. Пришлите скриншот информации из terraform console о своем модуле. Пример: > module.vpc_dev  
+```terraform
+terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+  }
+  required_version = ">=0.13"
+}
+
+variable "network_name" {
+  description = "Название сети"
+  type        = string
+}
+
+variable "zone" {
+  description = "Зона размещения"
+  type        = string
+}
+
+variable "v4_cidr_block" {
+  description = "Блок IPv4-адресов"
+  type        = string
+}
+
+resource "yandex_vpc_network" "network" {
+  name   = var.network_name
+  labels = {
+    "module" = "vpc"
+  }
+}
+
+resource "yandex_vpc_subnet" "subnet" {
+  name           = "${var.network_name}-subnet"
+  zone           = var.zone
+  network_id     = yandex_vpc_network.network.id
+  v4_cidr_blocks = [var.v4_cidr_block]
+}
+
+output "subnet_id" {
+  value = yandex_vpc_subnet.subnet.id
+}
+
+output "network_id" {
+  value = yandex_vpc_network.network.id
+}
+```
+2. Вы должны передать в модуль переменные с названием сети, zone и v4_cidr_blocks.  
+![2 2](https://github.com/PetrMezentsev/homeworks/assets/124135353/4fc4a8d6-cf23-47af-ac1e-31b542786017)
+
+3. Модуль должен возвращать в root module с помощью output информацию о yandex_vpc_subnet. Пришлите скриншот информации из terraform console о своем модуле. Пример: > module.vpc_dev
+  ![2 3](https://github.com/PetrMezentsev/homeworks/assets/124135353/eaaba5ef-4e2a-449b-a383-5f662a005e78)
+
 4. Замените ресурсы yandex_vpc_network и yandex_vpc_subnet созданным модулем. Не забудьте передать необходимые параметры сети из модуля vpc в модуль с виртуальной машиной.
 5. Откройте terraform console и предоставьте скриншот содержимого модуля. Пример: > module.vpc_dev.
+![2 4](https://github.com/PetrMezentsev/homeworks/assets/124135353/6e2675d4-a32d-4dff-b45f-6d99209530ab)
+
 6. Сгенерируйте документацию к модулю с помощью terraform-docs.    
  
 Пример вызова

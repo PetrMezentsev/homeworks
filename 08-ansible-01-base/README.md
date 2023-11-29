@@ -22,6 +22,20 @@
 ------
 
 3. Воспользуйтесь подготовленным (используется `docker`) или создайте собственное окружение для проведения дальнейших испытаний.
+
+##### Ответ: 
+Поискал на Docker Hub пару подхдящих под условия образов, запустил контейнеры командами:
+```bash
+docker run -itd --restart=always --name ubuntu --network host caacd5b6b541
+docker run -itd --restart=always --name centos7 --network host 39c0e5cecbeb
+
+docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS                                                  NAMES
+edef8c84cb20   caacd5b6b541   "python3"                3 minutes ago    Up 3 minutes                                                           ubuntu
+3ec13fe4dd74   39c0e5cecbeb   "/bin/bash /opt/spac…"   36 minutes ago   Up 16 minutes                                                          centos7
+```
+------
+
 4. Проведите запуск playbook на окружении из `prod.yml`. Зафиксируйте полученные значения `some_fact` для каждого из `managed host`.
 5. Добавьте факты в `group_vars` каждой из групп хостов так, чтобы для `some_fact` получились значения: для `deb` — `deb default fact`, для `el` — `el default fact`.
 6.  Повторите запуск playbook на окружении `prod.yml`. Убедитесь, что выдаются корректные значения для всех хостов.

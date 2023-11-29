@@ -37,6 +37,17 @@ edef8c84cb20   caacd5b6b541   "python3"                3 minutes ago    Up 3 min
 ------
 
 4. Проведите запуск playbook на окружении из `prod.yml`. Зафиксируйте полученные значения `some_fact` для каждого из `managed host`.
+
+##### Ответ:
+
+```bash
+ansible-playbook site.yml -i inventory/prod.yml
+```
+
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/484402fa-59a8-4735-abc3-5543d7add79e)
+
+------
+
 5. Добавьте факты в `group_vars` каждой из групп хостов так, чтобы для `some_fact` получились значения: для `deb` — `deb default fact`, для `el` — `el default fact`.
 6.  Повторите запуск playbook на окружении `prod.yml`. Убедитесь, что выдаются корректные значения для всех хостов.
 7. При помощи `ansible-vault` зашифруйте факты в `group_vars/deb` и `group_vars/el` с паролем `netology`.

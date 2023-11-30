@@ -71,11 +71,67 @@ ansible-playbook site.yml -i inventory/prod.yml
 8. Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь в работоспособности.
 
 ##### Ответ:
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/52d58a84-7b4c-454f-987b-cae91ac25957)
+
 ------
 
 9. Посмотрите при помощи `ansible-doc` список плагинов для подключения. Выберите подходящий для работы на `control node`.
 
 ##### Ответ:
+
+Отображаем список плагинов для подключения, понимаем, что для работы на контроллере подходит плагин `ansible.builtin.local`
+
+```bash
+ansible-doc -t connection -l
+ansible.builtin.local          execute on controller                                                                                              
+ansible.builtin.paramiko_ssh   Run tasks via Python SSH (paramiko)                                                                                
+ansible.builtin.psrp           Run tasks over Microsoft PowerShell Remoting Protocol                                                              
+ansible.builtin.ssh            connect via SSH client binary                                                                                      
+...
+```
+
+Можем ознакомиться с плагином более подробно
+
+```bash
+ansible-doc -t connection ansible.builtin.local
+> ANSIBLE.BUILTIN.LOCAL    (/usr/local/lib/python3.10/dist-packages/ansible/plugins/connection/local.py)
+
+        This connection plugin allows ansible to execute tasks on the Ansible 'controller' instead of on a remote host.
+
+ADDED IN: historical
+
+OPTIONS (= is mandatory):
+
+- pipelining
+        Pipelining reduces the number of connection operations required to execute a module on the remote server, by
+        executing many Ansible modules without actual file transfers.
+        This can result in a very significant performance improvement when enabled.
+        However this can conflict with privilege escalation (become). For example, when using sudo operations you must
+        first disable 'requiretty' in the sudoers file for the target hosts, which is why this feature is disabled by
+        default.
+        set_via:
+          env:
+          - name: ANSIBLE_PIPELINING
+          ini:
+          - key: pipelining
+            section: defaults
+          - key: pipelining
+            section: connection
+          vars:
+          - name: ansible_pipelining
+        default: false
+        type: boolean
+
+
+NOTES:
+      * The remote user is ignored, the user with which the ansible CLI was executed is used instead.
+
+
+AUTHOR: ansible (@core)
+
+NAME: local
+```
+
 ------
 
 10. В `prod.yml` добавьте новую группу хостов с именем  `local`, в ней разместите localhost с необходимым типом подключения.

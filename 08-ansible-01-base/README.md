@@ -50,10 +50,43 @@ ansible-playbook site.yml -i inventory/prod.yml
 
 5. Добавьте факты в `group_vars` каждой из групп хостов так, чтобы для `some_fact` получились значения: для `deb` — `deb default fact`, для `el` — `el default fact`.
 6.  Повторите запуск playbook на окружении `prod.yml`. Убедитесь, что выдаются корректные значения для всех хостов.
+
+##### Ответ:
+
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/fc44c7ed-845b-4a6a-af67-816e916ed17d)
+
+------
+
 7. При помощи `ansible-vault` зашифруйте факты в `group_vars/deb` и `group_vars/el` с паролем `netology`.
+
+##### Ответ:
+
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/459aa03f-7857-4e3e-afbb-56aded7eaaf1)
+
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/d1f777ec-f77c-4e00-a2c6-29db48c50e3b)
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/96fcda1e-5597-44f7-ac72-608204eaad19)
+
+------
+
 8. Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь в работоспособности.
+
+##### Ответ:
+------
+
 9. Посмотрите при помощи `ansible-doc` список плагинов для подключения. Выберите подходящий для работы на `control node`.
+
+##### Ответ:
+------
+
 10. В `prod.yml` добавьте новую группу хостов с именем  `local`, в ней разместите localhost с необходимым типом подключения.
+
+##### Ответ:
+------
+
 11. Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь, что факты `some_fact` для каждого из хостов определены из верных `group_vars`.
+
+##### Ответ:
+------
+
 12. Заполните `README.md` ответами на вопросы. Сделайте `git push` в ветку `master`. В ответе отправьте ссылку на ваш открытый репозиторий с изменённым `playbook` и заполненным `README.md`.
 ---

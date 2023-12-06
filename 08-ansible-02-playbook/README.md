@@ -60,14 +60,14 @@ vector:
     - block:
         - name: Get clickhouse distrib
           ansible.builtin.get_url:
-            url: "https://packages.clickhouse.com/rpm/stable/{{ item }}-{{ clickhouse_version }}.noarch.rpm"
-            dest: "./{{ item }}-{{ clickhouse_version }}.rpm"
+            url: https://packages.clickhouse.com/rpm/stable/{{ item }}-{{ clickhouse_version }}.noarch.rpm
+            dest: ./{{ item }}-{{ clickhouse_version }}.rpm
           with_items: "{{ clickhouse_packages }}"
       rescue:
         - name: Get clickhouse distrib
           ansible.builtin.get_url:
-            url: "https://packages.clickhouse.com/rpm/stable/clickhouse-common-static-{{ clickhouse_version }}.x86_64.rpm"
-            dest: "./clickhouse-common-static-{{ clickhouse_version }}.rpm"
+            url: https://packages.clickhouse.com/rpm/stable/clickhouse-common-static-{{ clickhouse_version }}.x86_64.rpm
+            dest: ./clickhouse-common-static-{{ clickhouse_version }}.rpm
     - name: Install clickhouse packages
       become: true
       ansible.builtin.yum:
@@ -77,31 +77,31 @@ vector:
           - clickhouse-server-{{ clickhouse_version }}.rpm
       notify: Start clickhouse service
     - name: Flush handlers
-      meta: flush_handlers
+      ansible.builtin.meta: flush_handlers
     - name: Create database
-      ansible.builtin.command: "clickhouse-client -q 'create database logs;'"
+      ansible.builtin.command: clickhouse-client -q 'create database logs;'
       register: create_db
       failed_when: create_db.rc != 0 and create_db.rc !=82
       changed_when: create_db.rc == 0
 - name: Install and configure Vector
-  hosts: vector  
+  hosts: vector
   become: true
   tasks:
     - name: Install Vector
       become: true
       ansible.builtin.yum:
-        name: "https://packages.timber.io/vector/{{vector_ver}}/vector-1.x86_64.rpm"
+        name: https://packages.timber.io/vector/{{ vector_ver }}/vector-1.x86_64.rpm
         state: present
     - name: Configure Vector
-      template:
+      ansible.builtin.template:
         src: vector_config.j2
         dest: /etc/vector/vector.toml
         owner: root
         group: root
-        mode: '0644'
+        mode: "0644"
       notify: restart vector
   handlers:
-    - name: restart vector
+    - name: Restart vector
       ansible.builtin.service:
         name: vector
         state: restarted
@@ -113,7 +113,24 @@ vector:
 3. При создании tasks рекомендую использовать модули: `get_url`, `template`, `unarchive`, `file`.
 4. Tasks должны: скачать дистрибутив нужной версии, выполнить распаковку в выбранную директорию, установить vector.
 5. Запустите `ansible-lint site.yml` и исправьте ошибки, если они есть.
+
+##### Ответ:
+
+Критичных ошибок, влияющих на итоговую работу, не выявлено
+
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/7f513d8b-7e06-47ba-b0b6-4609eadc63b1)
+
+
+------
+
 6. Попробуйте запустить playbook на этом окружении с флагом `--check`.
+
+##### Ответ:
+
+
+
+------
+
 7. Запустите playbook на `prod.yml` окружении с флагом `--diff`. Убедитесь, что изменения на системе произведены.
 8. Повторно запустите playbook с флагом `--diff` и убедитесь, что playbook идемпотентен.
 9. Подготовьте README.md-файл по своему playbook. В нём должно быть описано: что делает playbook, какие у него есть параметры и теги. Пример качественной документации ansible playbook по [ссылке](https://github.com/opensearch-project/ansible-playbook). Так же приложите скриншоты выполнения заданий №5-8

@@ -271,4 +271,8 @@ https://github.com/PetrMezentsev/homeworks/blob/main/08-ansible-02-playbook/play
 
 10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-02-playbook` на фиксирующий коммит, в ответ предоставьте ссылку на него.
 
+##### Ответ:
+
+https://github.com/PetrMezentsev/homeworks/commit/5a305823c87946779a87f8bbde49d7ec2cb30a69
+
 ---

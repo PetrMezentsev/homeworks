@@ -6,7 +6,7 @@
 
 ##### Ответ:
 
-![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/934d0f01-7d3c-41aa-9e7d-5eb6ddd42232)
+![](pictures/vm-list.PNG)
 
 ------
 
@@ -23,6 +23,7 @@
 ##### Ответ:
 После выполнения playbook, при переходе в браузере по IP-адресу хоста с Lighthouse видим следующее:
 
+![](pictures/web-lighthouse.PNG)
 
 ------
 

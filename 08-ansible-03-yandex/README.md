@@ -259,4 +259,8 @@ https://github.com/PetrMezentsev/homeworks/blob/main/08-ansible-03-yandex/playbo
 
 10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-03-yandex` на фиксирующий коммит, в ответ предоставьте ссылку на него.
 
+##### Ответ:
+
+https://github.com/PetrMezentsev/homeworks/commit/4b3cada6a1458f385a6a688ff03392067a3b5590
+
 ---

@@ -19,6 +19,13 @@
 1. Допишите playbook: нужно сделать ещё один play, который устанавливает и настраивает LightHouse.
 2. При создании tasks рекомендую использовать модули: `get_url`, `template`, `yum`, `apt`.
 3. Tasks должны: скачать статику LightHouse, установить Nginx или любой другой веб-сервер, настроить его конфиг для открытия LightHouse, запустить веб-сервер.
+
+##### Ответ:
+После выполнения playbook, при переходе в браузере по IP-адресу хоста с Lighthouse видим следующее:
+
+
+------
+
 4. Подготовьте свой inventory-файл `prod.yml`.
 
 ##### Ответ:
@@ -28,15 +35,15 @@
 clickhouse:
   hosts:
     clickhouse-01:
-        ansible_host: 158.160.59.255
+        ansible_host: 51.250.92.58
 vector:
   hosts:
     vector-01:
-      ansible_host: 62.84.119.163
+      ansible_host: 51.250.13.110
 lighthouse:
   hosts:
     lighthouse-01:
-      ansible_host: 51.250.12.145
+      ansible_host: 51.250.88.55
 ```
 
 ------

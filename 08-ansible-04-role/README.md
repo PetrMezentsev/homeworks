@@ -45,4 +45,10 @@
 10. Выложите playbook в репозиторий.
 11. В ответе дайте ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
 
+##### Ответ:
+
+[Vector](https://github.com/PetrMezentsev/vector-role)  
+[Lighthouse](https://github.com/PetrMezentsev/lighthouse-role)  
+[Playbook](https://github.com/PetrMezentsev/homeworks/tree/main/08-ansible-04-role/playbook)  
+
 ---

@@ -1,0 +1,7 @@
+---
+# vars file for vector-role
+src: "from_file"
+log_path: home/centos/log/*.log
+dest: "to_clickhouse"
+click_point: "http://158.160.121.177:8123"
+user: loger

@@ -1,0 +1,14 @@
+---
+# tasks file for vector-role
+- name: Get Vector
+  become: true
+  ansible.builtin.yum:
+    name: https://packages.timber.io/vector/{{ vector_ver }}/vector-1.x86_64.rpm
+    state: present
+- name: Configure Vector
+  become: true
+  ansible.builtin.template:
+    src: templates/vector_config.j2
+    dest: /etc/vector/vector.toml
+    mode: "0644"
+  notify: Start Vector service

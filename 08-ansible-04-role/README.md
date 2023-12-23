@@ -28,6 +28,20 @@
 7. Повторите шаги 3–6 для LightHouse. Помните, что одна роль должна настраивать один продукт.
 8. Выложите все roles в репозитории. Проставьте теги, используя семантическую нумерацию. Добавьте roles в `requirements.yml` в playbook.
 9. Переработайте playbook на использование roles. Не забудьте про зависимости LightHouse и возможности совмещения `roles` с `tasks`.
+
+##### Ответ:
+
+Переработанный playbook  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/8c5cf1ac-c9c4-4cb2-adc6-4b2582fd0f1b)
+
+Результат работы playbook
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/e1bf68a2-4097-4c70-94bd-927a873c0e83)
+
+Страница с Lighthouse
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/96182130-a08c-4a9c-9f8f-3427b500970a)
+
+------
+
 10. Выложите playbook в репозиторий.
 11. В ответе дайте ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
 

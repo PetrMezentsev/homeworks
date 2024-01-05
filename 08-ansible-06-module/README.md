@@ -413,6 +413,6 @@ or trying out features under development. This is a rapidly changing source of c
 **Шаг 17.** В ответ необходимо прислать ссылки на collection и tar.gz архив, а также скриншоты выполнения пунктов 4, 6, 15 и 16.
 
 [Ссылка на collection](https://github.com/PetrMezentsev/my_own_collection)
-
+[Ссылка на архив](https://github.com/PetrMezentsev/homeworks/blob/main/08-ansible-06-module/my_own_namespace-yandex_cloud_elk-1.0.0.tar.gz)
 
 ---

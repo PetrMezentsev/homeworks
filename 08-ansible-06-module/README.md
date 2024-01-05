@@ -382,6 +382,11 @@ or trying out features under development. This is a rapidly changing source of c
 
 **Шаг 11.** Создайте playbook для использования этой role.
 
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/ab1abd6a-4925-436e-bde8-33da4f7da72d)
+
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/b3e6ed94-59e4-44ff-b2d4-7ef741e904eb)
+
+
 **Шаг 12.** Заполните всю документацию по collection, выложите в свой репозиторий, поставьте тег `1.0.0` на этот коммит.
 
 **Шаг 13.** Создайте .tar.gz этой collection: `ansible-galaxy collection build` в корневой директории collection.

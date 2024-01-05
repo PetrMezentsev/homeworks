@@ -183,15 +183,183 @@ if __name__ == '__main__':
 
 **Шаг 3.** Заполните файл в соответствии с требованиями Ansible так, чтобы он выполнял основную задачу: module должен создавать текстовый файл на удалённом хосте по пути, определённом в параметре `path`, с содержимым, определённым в параметре `content`.
 
+```python
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# <ansible_module>.py
+# Copyright: (c) 2023, Petr Mezentsev <pvmezentsev@gmail.com>
+# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+from __future__ import (absolute_import, division, print_function)
+__metaclass__ = type
+
+DOCUMENTATION = r'''
+---
+module: my_test
+
+short_description: This is my test module
+
+# If this is part of a collection, you need to use semantic versioning,
+# i.e. the version is of the form "2.5.0" and not "2.4".
+version_added: "1.0.0"
+
+description: This is my longer description explaining my test module.
+
+options:
+    name:
+        description: This is the message to send to the test module.
+        required: true
+        type: str
+    new:
+        description:
+            - Control to demo if the result of this module is changed or not.
+            - Parameter description can be a list as well.
+        required: false
+        type: bool
+# Specify this value according to your collection
+# in format of namespace.collection.doc_fragment_name
+# extends_documentation_fragment:
+#     - my_namespace.my_collection.my_doc_fragment_name
+
+author:
+    - Your Name (@yourGitHubHandle)
+'''
+
+EXAMPLES = r'''
+# Pass in a message
+- name: Test with a message
+  my_namespace.my_collection.my_test:
+    name: hello world
+
+# pass in a message and have changed true
+- name: Test with a message and changed output
+  my_namespace.my_collection.my_test:
+    name: hello world
+    new: true
+
+# fail the module
+- name: Test failure of the module
+  my_namespace.my_collection.my_test:
+    name: fail me
+'''
+
+RETURN = r'''
+# These are examples of possible return values, and in general should use other names for return values.
+original_message:
+    description: The original name param that was passed in.
+    type: str
+    returned: always
+    sample: 'hello world'
+message:
+    description: The output message that the test module generates.
+    type: str
+    returned: always
+    sample: 'goodbye'
+'''
+
+from ansible.module_utils.basic import AnsibleModule
+import os
+
+def run_module():
+    # define available arguments/parameters a user can pass to the module
+    module_args = dict(
+        path=dict(type='str', required=True),
+        content=dict(type='str', required=False, default='Default text')
+    )
+
+    # seed the result dict in the object
+    # we primarily care about changed and state
+    # changed is if this module effectively modified the target
+    # state will include any data that you want your module to pass back
+    # for consumption, for example, in a subsequent task
+    result = dict(
+        changed=False
+    )
+
+    # the AnsibleModule object will be our abstraction working with Ansible
+    # this includes instantiation, a couple of common attr would be the
+    # args/params passed to the execution, as well as if the module
+    # supports check mode
+    module = AnsibleModule(
+        argument_spec=module_args,
+        supports_check_mode=True
+    )
+
+    path = module.params['path']
+    content = module.params['content']
+
+    # if the user is working with this module in only check mode we do not
+    # want to make any changes to the environment, just return the current
+    # state with no modifications
+    if module.check_mode:
+        module.exit_json(**result)
+
+    # Create or rewrite file
+    with open(path, 'w') as file:
+        file.write(content)
+
+    # manipulate or modify the state as needed (this is going to be the
+    # part where your module will do what it needs to do)
+    result['changed'] = True
+    result['message'] = f'File {path} created with the given content'
+
+    # during the execution of the module, if there is an exception or a
+    # conditional state that effectively causes a failure, run
+    # AnsibleModule.fail_json() to pass in the message and the result
+    if module.params['path'] == 'fail me':
+        module.fail_json(msg='Wrong path', **result)
+
+    # in the event of a successful module execution, you will want to
+    # simple AnsibleModule.exit_json(), passing the key/value results
+    module.exit_json(**result)
+
+
+def main():
+    run_module()
+
+
+if __name__ == '__main__':
+    main()
+```
+
+
 **Шаг 4.** Проверьте module на исполняемость локально.
+
+```bash
+(venv) user@LE3:~/module/ansible$ python -m ansible.modules.my_own_module payload.json 
+
+{"changed": true, "message": "File my_test_file.md created with the given content", "invocation": {"module_args": {"path": "my_test_file.md", "content": "Content from argument"}}}
+```
 
 **Шаг 5.** Напишите single task playbook и используйте module в нём.
 
+```yaml
+---
+- name: Test module
+  hosts: localhost
+  tasks:
+  - name: Call my_own_module
+    my_own_module:
+      path: './my_test_file.md'
+      content: "Content from playbook"
+```
+
+
 **Шаг 6.** Проверьте через playbook на идемпотентность.
+
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/38e0d098-1109-4776-8856-a5ba2eef9d76)
+
+
 
 **Шаг 7.** Выйдите из виртуального окружения.
 
 **Шаг 8.** Инициализируйте новую collection: `ansible-galaxy collection init my_own_namespace.yandex_cloud_elk`.
+
+```bash
+user@LE3:~/module/ansible$ ansible-galaxy collection init my_own_namespace.yandex_cloud_elk
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if you are modifying the Ansible engine,
+or trying out features under development. This is a rapidly changing source of code and can become unstable at any point.
+- Collection my_own_namespace.yandex_cloud_elk was created successfully
+```
 
 **Шаг 9.** В эту collection перенесите свой module в соответствующую директорию.
 

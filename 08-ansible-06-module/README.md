@@ -6,13 +6,33 @@
  
 [my_own_collection](https://github.com/PetrMezentsev/my_own_collection)
 
-2. Скачайте репозиторий Ansible: `git clone https://github.com/ansible/ansible.git` по любому, удобному вам пути.
+2. Скачайте репозиторий Ansible: `git clone https://github.com/ansible/ansible.git` по любому, удобному вам пути.  
+
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/771b9a2f-c7d6-446e-bf39-8674e7e83b7b)
+
+
 3. Зайдите в директорию Ansible: `cd ansible`.
 4. Создайте виртуальное окружение: `python3 -m venv venv`.
-5. Активируйте виртуальное окружение: `. venv/bin/activate`. Дальнейшие действия производятся только в виртуальном окружении.
-6. Установите зависимости `pip install -r requirements.txt`.
-7. Запустите настройку окружения `. hacking/env-setup`.
+5. Активируйте виртуальное окружение: `. venv/bin/activate`. Дальнейшие действия производятся только в виртуальном окружении.  
+
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/0884e4e6-4e51-4750-98b4-2cb50db9e567)
+
+
+6. Установите зависимости `pip install -r requirements.txt`.  
+
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/31f7f24d-e142-44b0-8544-8ad55d17e5e1)
+
+
+7. Запустите настройку окружения `. hacking/env-setup`.  
+
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/4be60113-7fe8-4772-9323-377467524c90)
+
+
 8. Если все шаги прошли успешно — выйдите из виртуального окружения `deactivate`.
+
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/c9c9efda-701a-492b-9f13-9dea646d8e3f)
+
+
 9. Ваше окружение настроено. Чтобы запустить его, нужно находиться в директории `ansible` и выполнить конструкцию `. venv/bin/activate && . hacking/env-setup`.
 
 ## Основная часть

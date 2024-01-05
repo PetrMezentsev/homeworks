@@ -363,7 +363,22 @@ or trying out features under development. This is a rapidly changing source of c
 
 **Шаг 9.** В эту collection перенесите свой module в соответствующую директорию.
 
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/5ce73651-0d7f-4c6e-8a23-2bad3483bdb6)
+
+
 **Шаг 10.** Single task playbook преобразуйте в single task role и перенесите в collection. У role должны быть default всех параметров module.
+
+```bash
+user@LE3:~/module/ansible/my_own_namespace/yandex_cloud_elk/roles$ ansible-galaxy role init role_for_test_module
+[WARNING]: You are running the development version of Ansible. You should only run Ansible from "devel" if you are modifying the Ansible engine,
+or trying out features under development. This is a rapidly changing source of code and can become unstable at any point.
+- Role role_for_test_module was created successfully
+```
+
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/e1c5e668-9a14-43b2-a086-f0943317a6b9)
+
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/91a0438b-a1ce-4bb7-b803-ebaf888f7ce4)
+
 
 **Шаг 11.** Создайте playbook для использования этой role.
 

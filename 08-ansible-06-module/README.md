@@ -389,29 +389,30 @@ or trying out features under development. This is a rapidly changing source of c
 
 **Шаг 12.** Заполните всю документацию по collection, выложите в свой репозиторий, поставьте тег `1.0.0` на этот коммит.
 
+[1.0.0](https://github.com/PetrMezentsev/my_own_collection/releases/tag/1.0.0)
+
 **Шаг 13.** Создайте .tar.gz этой collection: `ansible-galaxy collection build` в корневой директории collection.
+
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/96a36988-f7aa-4aa9-840b-9dce93517652)
 
 **Шаг 14.** Создайте ещё одну директорию любого наименования, перенесите туда single task playbook и архив c collection.
 
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/4ddb3fc8-694c-4981-acbe-c50645c98719)
+
+
 **Шаг 15.** Установите collection из локального архива: `ansible-galaxy collection install <archivename>.tar.gz`.
+
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/0658080b-7457-44d5-8236-cb10db57a78f)
+
 
 **Шаг 16.** Запустите playbook, убедитесь, что он работает.
 
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/ab28861d-b6b0-4988-9225-2cac81f0689f)
+
+
 **Шаг 17.** В ответ необходимо прислать ссылки на collection и tar.gz архив, а также скриншоты выполнения пунктов 4, 6, 15 и 16.
 
-## Необязательная часть
+[Ссылка на collection](https://github.com/PetrMezentsev/my_own_collection)
 
-1. Реализуйте свой модуль для создания хостов в Yandex Cloud.
-2. Модуль может и должен иметь зависимость от `yc`, основной функционал: создание ВМ с нужным сайзингом на основе нужной ОС. Дополнительные модули по созданию кластеров ClickHouse, MySQL и прочего реализовывать не надо, достаточно простейшего создания ВМ.
-3. Модуль может формировать динамическое inventory, но эта часть не является обязательной, достаточно, чтобы он делал хосты с указанной спецификацией в YAML.
-4. Протестируйте модуль на идемпотентность, исполнимость. При успехе добавьте этот модуль в свою коллекцию.
-5. Измените playbook так, чтобы он умел создавать инфраструктуру под inventory, а после устанавливал весь ваш стек Observability на нужные хосты и настраивал его.
-6. В итоге ваша коллекция обязательно должна содержать: clickhouse-role (если есть своя), lighthouse-role, vector-role, два модуля: my_own_module и модуль управления Yandex Cloud хостами и playbook, который демонстрирует создание Observability стека.
-
----
-
-### Как оформить решение задания
-
-Выполненное домашнее задание пришлите в виде ссылки на .md-файл в вашем репозитории.
 
 ---

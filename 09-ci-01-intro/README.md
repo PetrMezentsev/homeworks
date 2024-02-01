@@ -23,6 +23,9 @@
 6. On test -> On fix, Done.
 7. Done -> Closed, Open.
 
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/e7d39ad1-cf5c-46e0-945f-52f7bd4509ed)
+
+
 Остальные задачи должны проходить по упрощённому workflow:
 
 1. Open -> On develop.
@@ -30,6 +33,9 @@
 3. Done develop -> On test.
 4. On test -> On develop, Done.
 5. Done -> Closed, Open.
+
+![image](https://github.com/PetrMezentsev/homeworks/assets/124135353/0a913863-29a0-4cd1-9f80-c0e53db56559)
+
 
 **Что нужно сделать**
 

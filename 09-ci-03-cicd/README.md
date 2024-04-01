@@ -2,18 +2,30 @@
 
 ## Подготовка к выполнению
 
-1. Создайте два VM в Yandex Cloud с параметрами: 2CPU 4RAM Centos7 (остальное по минимальным требованиям).
-![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/65e6ba47-52c7-498d-8af2-bd248aa38c60)
+1. Создайте два VM в Yandex Cloud с параметрами: 2CPU 4RAM Centos7 (остальное по минимальным требованиям).  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/f9804780-2b69-4a48-b615-2ef60c8ad38e)
+
 
 2. Пропишите в [inventory](./infrastructure/inventory/cicd/hosts.yml) [playbook](./infrastructure/site.yml) созданные хосты.  
-![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/e6947f92-a6f3-4aef-ac6a-ac8527769c1b)
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/7d2361f7-a7cc-44fa-bfb2-1493c35213ca)
+
 
 3. Добавьте в [files](./infrastructure/files/) файл со своим публичным ключом (id_rsa.pub). Если ключ называется иначе — найдите таску в плейбуке, которая использует id_rsa.pub имя, и исправьте на своё.
-4. Запустите playbook, ожидайте успешного завершения.
-5. Проверьте готовность SonarQube через [браузер](http://localhost:9000).
-6. Зайдите под admin\admin, поменяйте пароль на свой.
-7.  Проверьте готовность Nexus через [бразуер](http://localhost:8081).
-8. Подключитесь под admin\admin123, поменяйте пароль, сохраните анонимный доступ.
+4. Запустите playbook, ожидайте успешного завершения.  
+* Примечание: 11 версия Postgresql не устанавливалась по ссылкам на репозиторий, описанный в подготовленном плэйбуке, поменял в тасках плэйбука версию на 12
+```bash
+...09-ci-03-cicd/infrastructure$ ansible-playbook -i ./inventory/cicd/hosts.yml site.yml
+```
+
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/bdde83ed-1658-44c0-961e-03cc3d34b383)
+
+
+6. Проверьте готовность SonarQube через [браузер](http://localhost:9000).  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/bf0ebd8c-3230-47fd-a6ef-e1a18f1540dd)
+
+7. Зайдите под admin\admin, поменяйте пароль на свой.
+8.  Проверьте готовность Nexus через [бразуер](http://localhost:8081).
+9. Подключитесь под admin\admin123, поменяйте пароль, сохраните анонимный доступ.
 
 ## Знакомоство с SonarQube
 

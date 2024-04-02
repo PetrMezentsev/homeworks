@@ -128,9 +128,20 @@ OS name: "linux", version: "6.5.0-21-generic", arch: "amd64", family: "unix"
 1. Поменяйте в `pom.xml` блок с зависимостями под ваш артефакт из первого пункта задания для Nexus (java с версией 8_282).  
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/ad3b21e0-7f55-4efe-9dae-ae633433bea0)
 
-2. Запустите команду `mvn package` в директории с `pom.xml`, ожидайте успешного окончания.
-3. Проверьте директорию `~/.m2/repository/`, найдите ваш артефакт.
-4. В ответе пришлите исправленный файл `pom.xml`.
+2. Запустите команду `mvn package` в директории с `pom.xml`, ожидайте успешного окончания.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/907889da-d87b-44c4-b232-c971fbb724b4)
+
+3. Проверьте директорию `~/.m2/repository/`, найдите ваш артефакт.  
+```bash
+ls -lh ~/.m2/repository/netology/java/8_282/
+итого 12K
+-rw-r--r-- 1 root root   0 апр  2 17:18 java-8_282-distrib.tar.gz
+-rw-r--r-- 1 root root  40 апр  2 17:18 java-8_282-distrib.tar.gz.sha1
+-rw-r--r-- 1 root root 393 апр  2 17:18 java-8_282.pom.lastUpdated
+-rw-r--r-- 1 root root 176 апр  2 17:18 _remote.repositories
+```
+4. В ответе пришлите исправленный файл `pom.xml`.  
+[pom.xml](https://github.com/PetrMezentsev/homeworks/blob/main/09-ci-03-cicd/mvn/pom.xml)
 
 ---
 

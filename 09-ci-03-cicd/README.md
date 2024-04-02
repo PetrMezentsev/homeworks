@@ -96,8 +96,11 @@ INFO: ------------------------------------------------------------------------
  *    type: tar.gz.
    
 2. В него же загрузите такой же артефакт, но с version: 8_102.
-3. Проверьте, что все файлы загрузились успешно.
-4. В ответе пришлите файл `maven-metadata.xml` для этого артефекта.
+3. Проверьте, что все файлы загрузились успешно.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/9b946ebb-0a75-45d7-92a1-4d2488d5fac0)
+
+4. В ответе пришлите файл `maven-metadata.xml` для этого артефакта.  
+[maven-metadata.xml](https://github.com/PetrMezentsev/homeworks/blob/main/09-ci-03-cicd/nexus/maven-metadata.xml)
 
 ### Знакомство с Maven
 

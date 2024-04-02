@@ -33,10 +33,20 @@
 
 ### Основная часть
 
-1. Создайте новый проект, название произвольное.
-2. Скачайте пакет sonar-scanner, который вам предлагает скачать SonarQube.
+1. Создайте новый проект, название произвольное.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/0746f9d7-9544-4e89-aced-876473528e90)
+
+2. Скачайте пакет sonar-scanner, который вам предлагает скачать SonarQube.  
 3. Сделайте так, чтобы binary был доступен через вызов в shell (или поменяйте переменную PATH, или любой другой, удобный вам способ).
-4. Проверьте `sonar-scanner --version`.
+4. Проверьте `sonar-scanner --version`.  
+```bash
+root@LE3:/home/sonar_scanner/sonar-scanner-5.0.1.3006-linux/bin# sonar-scanner --version
+INFO: Scanner configuration file: /home/sonar_scanner/sonar-scanner-5.0.1.3006-linux/conf/sonar-scanner.properties
+INFO: Project root configuration file: NONE
+INFO: SonarScanner 5.0.1.3006
+INFO: Java 17.0.7 Eclipse Adoptium (64-bit)
+INFO: Linux 6.5.0-21-generic amd64
+```
 5. Запустите анализатор против кода из директории [example](./example) с дополнительным ключом `-Dsonar.coverage.exclusions=fail.py`.
 6. Посмотрите результат в интерфейсе.
 7. Исправьте ошибки, которые он выявил, включая warnings.

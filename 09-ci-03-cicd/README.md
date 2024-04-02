@@ -24,12 +24,12 @@
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/bf0ebd8c-3230-47fd-a6ef-e1a18f1540dd)
 
 6. Зайдите под admin\admin, поменяйте пароль на свой.
-7.  Проверьте готовность Nexus через [бразуер](http://localhost:8081).  
+7.  Проверьте готовность Nexus через [браузер](http://localhost:8081).  
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/e22c8fe3-f5c8-4b83-b410-2c02153fccb9)
 
 8. Подключитесь под admin\admin123, поменяйте пароль, сохраните анонимный доступ.
 
-## Знакомоство с SonarQube
+## Знакомство с SonarQube
 
 ### Основная часть
 

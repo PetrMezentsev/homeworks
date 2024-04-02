@@ -108,8 +108,11 @@ INFO: ------------------------------------------------------------------------
 
 1. Скачайте дистрибутив с [maven](https://maven.apache.org/download.cgi).
 2. Разархивируйте, сделайте так, чтобы binary был доступен через вызов в shell (или поменяйте переменную PATH, или любой другой, удобный вам способ).
-3. Удалите из `apache-maven-<version>/conf/settings.xml` упоминание о правиле, отвергающем HTTP- соединение — раздел mirrors —> id: my-repository-http-unblocker.
-4. Проверьте `mvn --version`.  
+3. Удалите из `apache-maven-<version>/conf/settings.xml` упоминание о правиле, отвергающем HTTP- соединение — раздел mirrors —> id: my-repository-http-unblocker.  
+После удаления раздела участок файла с настройками будет выглядеть примерно так:
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/478cebd9-1e1a-4e21-ae0e-a37b3a41269b)
+
+5. Проверьте `mvn --version`.  
 ```bash
 user@LE3:~$ mvn --version
 Apache Maven 3.9.6 (bc0240f3c744dd6b6ec2920b3cd08dcc295161ae)
@@ -122,7 +125,9 @@ OS name: "linux", version: "6.5.0-21-generic", arch: "amd64", family: "unix"
 
 ### Основная часть
 
-1. Поменяйте в `pom.xml` блок с зависимостями под ваш артефакт из первого пункта задания для Nexus (java с версией 8_282).
+1. Поменяйте в `pom.xml` блок с зависимостями под ваш артефакт из первого пункта задания для Nexus (java с версией 8_282).  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/ad3b21e0-7f55-4efe-9dae-ae633433bea0)
+
 2. Запустите команду `mvn package` в директории с `pom.xml`, ожидайте успешного окончания.
 3. Проверьте директорию `~/.m2/repository/`, найдите ваш артефакт.
 4. В ответе пришлите исправленный файл `pom.xml`.

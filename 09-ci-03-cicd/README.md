@@ -47,7 +47,28 @@ INFO: SonarScanner 5.0.1.3006
 INFO: Java 17.0.7 Eclipse Adoptium (64-bit)
 INFO: Linux 6.5.0-21-generic amd64
 ```
-5. Запустите анализатор против кода из директории [example](./example) с дополнительным ключом `-Dsonar.coverage.exclusions=fail.py`.
+5. Запустите анализатор против кода из директории [example](./example) с дополнительным ключом `-Dsonar.coverage.exclusions=fail.py`.  
+```bash
+...09-ci-03-cicd/example# sonar-scanner -Dsonar.projectKey=test_project -Dsonar.sources=. -Dsonar.host.url=http://158.160.50.192:9000 -Dsonar.login=1745ace05a5b0905394fd1cc28db2c6842300acb -Dsonar.coverage.exclusions=fail.py
+INFO: Scanner configuration file: /home/sonar_scanner/sonar-scanner-5.0.1.3006-linux/conf/sonar-scanner.properties
+INFO: Project root configuration file: NONE
+INFO: SonarScanner 5.0.1.3006
+INFO: Java 17.0.7 Eclipse Adoptium (64-bit)
+INFO: Linux 6.5.0-21-generic amd64
+INFO: User cache: /root/.sonar/cache
+INFO: Analyzing on SonarQube server 9.1.0
+INFO: Default locale: "ru_RU", source code encoding: "UTF-8" (analysis is platform dependent)
+INFO: Load global settings
+INFO: Load global settings (done) | time=237ms
+...
+INFO: Analysis total time: 9.468 s
+INFO: ------------------------------------------------------------------------
+INFO: EXECUTION SUCCESS
+INFO: ------------------------------------------------------------------------
+INFO: Total time: 31.364s
+INFO: Final Memory: 8M/34M
+INFO: ------------------------------------------------------------------------
+```
 6. Посмотрите результат в интерфейсе.
 7. Исправьте ошибки, которые он выявил, включая warnings.
 8. Запустите анализатор повторно — проверьте, что QG пройдены успешно.

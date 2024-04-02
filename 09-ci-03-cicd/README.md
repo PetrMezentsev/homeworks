@@ -20,14 +20,14 @@
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/bdde83ed-1658-44c0-961e-03cc3d34b383)
 
 
-6. Проверьте готовность SonarQube через [браузер](http://localhost:9000).  
+5. Проверьте готовность SonarQube через [браузер](http://localhost:9000).  
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/bf0ebd8c-3230-47fd-a6ef-e1a18f1540dd)
 
-7. Зайдите под admin\admin, поменяйте пароль на свой.
-8.  Проверьте готовность Nexus через [бразуер](http://localhost:8081).  
+6. Зайдите под admin\admin, поменяйте пароль на свой.
+7.  Проверьте готовность Nexus через [бразуер](http://localhost:8081).  
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/e22c8fe3-f5c8-4b83-b410-2c02153fccb9)
 
-9. Подключитесь под admin\admin123, поменяйте пароль, сохраните анонимный доступ.
+8. Подключитесь под admin\admin123, поменяйте пароль, сохраните анонимный доступ.
 
 ## Знакомоство с SonarQube
 
@@ -72,8 +72,13 @@ INFO: ------------------------------------------------------------------------
 6. Посмотрите результат в интерфейсе.  
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/924e9d4d-8a63-4012-8721-91b09cbe4435)
 
-7. Исправьте ошибки, которые он выявил, включая warnings.
-8. Запустите анализатор повторно — проверьте, что QG пройдены успешно.
+7. Исправьте ошибки, которые он выявил, включая warnings.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/de63627e-84f5-4dc1-93d3-7cf71cb8ce0e)
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/b1bbdd22-ea7a-44e4-acf8-27ccaea5309c)  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/2d0494c6-d924-4fa7-9603-919ae872aa27)
+
+8. Запустите анализатор повторно — проверьте, что QG пройдены успешно.  
+
 9. Сделайте скриншот успешного прохождения анализа, приложите к решению ДЗ.
 
 ## Знакомство с Nexus

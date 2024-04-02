@@ -109,7 +109,15 @@ INFO: ------------------------------------------------------------------------
 1. Скачайте дистрибутив с [maven](https://maven.apache.org/download.cgi).
 2. Разархивируйте, сделайте так, чтобы binary был доступен через вызов в shell (или поменяйте переменную PATH, или любой другой, удобный вам способ).
 3. Удалите из `apache-maven-<version>/conf/settings.xml` упоминание о правиле, отвергающем HTTP- соединение — раздел mirrors —> id: my-repository-http-unblocker.
-4. Проверьте `mvn --version`.
+4. Проверьте `mvn --version`.  
+```bash
+user@LE3:~$ mvn --version
+Apache Maven 3.9.6 (bc0240f3c744dd6b6ec2920b3cd08dcc295161ae)
+Maven home: /home/maven/apache-maven-3.9.6
+Java version: 11.0.22, vendor: Ubuntu, runtime: /usr/lib/jvm/java-11-openjdk-amd64
+Default locale: ru_RU, platform encoding: UTF-8
+OS name: "linux", version: "6.5.0-21-generic", arch: "amd64", family: "unix"
+```
 5. Заберите директорию [mvn](./mvn) с pom.
 
 ### Основная часть

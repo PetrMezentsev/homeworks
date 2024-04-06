@@ -74,11 +74,36 @@ To github.com:PetrMezentsev/example-teamcity.git
 13. Убедитесь, что сборка самостоятельно запустилась, тесты прошли успешно.  
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/c927e152-fefa-4ad3-95c8-3023a54ff957)
 
-14. Внесите изменения из произвольной ветки `feature/add_reply` в `master` через `Merge`.
+14. Внесите изменения из произвольной ветки `feature/add_reply` в `master` через `Merge`.  
+```bash
+git merge feature/add_reply 
+Обновление 17a35c7..e479286
+Fast-forward
+ src/main/java/plaindoll/Welcomer.java     | 3 +++
+ src/test/java/plaindoll/WelcomerTest.java | 6 +++++-
+ 2 files changed, 8 insertions(+), 1 deletion(-)
+```
+```bash
+git push -f git@github.com:PetrMezentsev/example-teamcity.git
+Всего 0 (изменений 0), повторно использовано 0 (изменений 0), повторно использовано пакетов 0
+To github.com:PetrMezentsev/example-teamcity.git
+ + 92ad55e...e479286 master -> master (forced update)
+```
 15. Убедитесь, что нет собранного артефакта в сборке по ветке `master`.
-16. Настройте конфигурацию так, чтобы она собирала `.jar` в артефакты сборки.
-17. Проведите повторную сборку мастера, убедитесь, что сбора прошла успешно и артефакты собраны.
-18. Проверьте, что конфигурация в репозитории содержит все настройки конфигурации из teamcity.
+16. Настройте конфигурацию так, чтобы она собирала `.jar` в артефакты сборки.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/855cf7ee-3e82-4379-9c15-399514b991e5)
+
+17. Проведите повторную сборку мастера, убедитесь, что сборка прошла успешно и артефакты собраны.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/70d0fdbf-0872-476e-95b0-ba26f389a8c2)
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/edcfdbd5-68b6-4eec-b172-32cfb6a976fd)
+
+
+18. Проверьте, что конфигурация в репозитории содержит все настройки конфигурации из teamcity.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/5adaa230-f83b-4c2a-999d-ca178a4f83ea)
+
+
 19. В ответе пришлите ссылку на репозиторий.
+
+![Ссылка на репозиторий](https://github.com/PetrMezentsev/example-teamcity)
 
 ---

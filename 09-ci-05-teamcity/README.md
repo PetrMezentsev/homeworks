@@ -26,10 +26,19 @@
 ## Основная часть
 
 1. Создайте новый проект в teamcity на основе fork.
-2. Сделайте autodetect конфигурации.
-3. Сохраните необходимые шаги, запустите первую сборку master.
-4. Поменяйте условия сборки: если сборка по ветке `master`, то должен происходит `mvn clean deploy`, иначе `mvn clean test`.
-5. Для deploy будет необходимо загрузить [settings.xml](./teamcity/settings.xml) в набор конфигураций maven у teamcity, предварительно записав туда креды для подключения к nexus.
+2. Сделайте autodetect конфигурации.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/bca62312-a3e0-48d9-9074-87e291d772e8)
+
+3. Сохраните необходимые шаги, запустите первую сборку master.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/a3c61290-414e-475d-831f-4dede7b37c39)
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/d1012c3b-16c5-478d-b04a-5dbbdce7f880)
+
+4. Поменяйте условия сборки: если сборка по ветке `master`, то должен происходит `mvn clean deploy`, иначе `mvn clean test`.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/df3bd3e3-3a69-4248-ac3a-f3bef160186f)
+
+5. Для deploy будет необходимо загрузить [settings.xml](./teamcity/settings.xml) в набор конфигураций maven у teamcity, предварительно записав туда креды для подключения к nexus.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/9b3715d5-0852-4a7a-ad03-d6038124e269)
+  
 6. В pom.xml необходимо поменять ссылки на репозиторий и nexus.
 7. Запустите сборку по master, убедитесь, что всё прошло успешно и артефакт появился в nexus.
 8. Мигрируйте `build configuration` в репозиторий.

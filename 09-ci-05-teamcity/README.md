@@ -34,13 +34,19 @@
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/d1012c3b-16c5-478d-b04a-5dbbdce7f880)
 
 4. Поменяйте условия сборки: если сборка по ветке `master`, то должен происходит `mvn clean deploy`, иначе `mvn clean test`.  
-![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/df3bd3e3-3a69-4248-ac3a-f3bef160186f)
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/bbc523c3-3518-42d6-976b-0ba09a1df07c)
+
+
 
 5. Для deploy будет необходимо загрузить [settings.xml](./teamcity/settings.xml) в набор конфигураций maven у teamcity, предварительно записав туда креды для подключения к nexus.  
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/9b3715d5-0852-4a7a-ad03-d6038124e269)
   
-6. В pom.xml необходимо поменять ссылки на репозиторий и nexus.
-7. Запустите сборку по master, убедитесь, что всё прошло успешно и артефакт появился в nexus.
+6. В pom.xml необходимо поменять ссылки на репозиторий и nexus.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/7ee5fc53-3104-422d-9f47-aa1759b88cd7)
+
+7. Запустите сборку по master, убедитесь, что всё прошло успешно и артефакт появился в nexus.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/78cdb1e5-a3d1-4f91-9de7-a91c6a64b0d6)
+
 8. Мигрируйте `build configuration` в репозиторий.
 9. Создайте отдельную ветку `feature/add_reply` в репозитории.
 10. Напишите новый метод для класса Welcomer: метод должен возвращать произвольную реплику, содержащую слово `hunter`.

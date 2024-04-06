@@ -1,0 +1,6 @@
+projectKey=test_project
+serverUrl=http://158.160.50.192:9000
+serverVersion=9.1.0.47736
+dashboardUrl=http://158.160.50.192:9000/dashboard?id=test_project
+ceTaskId=AY6dSdm9AOVYb99-2Hnl
+ceTaskUrl=http://158.160.50.192:9000/api/ce/task?id=AY6dSdm9AOVYb99-2Hnl

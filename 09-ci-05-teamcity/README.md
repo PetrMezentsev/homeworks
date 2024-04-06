@@ -45,7 +45,8 @@
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/7ee5fc53-3104-422d-9f47-aa1759b88cd7)
 
 7. Запустите сборку по master, убедитесь, что всё прошло успешно и артефакт появился в nexus.  
-![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/78cdb1e5-a3d1-4f91-9de7-a91c6a64b0d6)
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/d272e75d-d57e-416e-80b6-a3de378a5ba4)
+
 
 8. Мигрируйте `build configuration` в репозиторий.  
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/3ab32c20-574e-4d74-8f99-ce064ff9b00a)

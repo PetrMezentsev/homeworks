@@ -47,7 +47,9 @@
 7. Запустите сборку по master, убедитесь, что всё прошло успешно и артефакт появился в nexus.  
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/78cdb1e5-a3d1-4f91-9de7-a91c6a64b0d6)
 
-8. Мигрируйте `build configuration` в репозиторий.
+8. Мигрируйте `build configuration` в репозиторий.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/3ab32c20-574e-4d74-8f99-ce064ff9b00a)
+
 9. Создайте отдельную ветку `feature/add_reply` в репозитории.
 10. Напишите новый метод для класса Welcomer: метод должен возвращать произвольную реплику, содержащую слово `hunter`.
 11. Дополните тест для нового метода на поиск слова `hunter` в новой реплике.

@@ -41,7 +41,8 @@
 
 1. Создайте для каждой Dashboard подходящее правило alert — можно обратиться к первой лекции в блоке «Мониторинг».
 1. В качестве решения задания приведите скриншот вашей итоговой Dashboard.  
-![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/1bfa6377-d958-4862-937c-6b9a058b3b29)
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/d2b6fca8-a6da-456c-8074-1beb6a185aff)
+
 
 
 ## Задание 4

@@ -33,7 +33,8 @@
 --- `node_filesystem_free_bytes{device="/dev/vda2",mountpoint="/"}` - Количество свободного места
 
 Для решения этого задания приведите promql-запросы для выдачи этих метрик, а также скриншот получившейся Dashboard.  
-![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/9863fe74-51ee-4af4-a7ab-5af07b11bc51)
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/b3a94d09-7bba-4c12-b1af-75dbe14ef3d5)
+
 
 
 ## Задание 3

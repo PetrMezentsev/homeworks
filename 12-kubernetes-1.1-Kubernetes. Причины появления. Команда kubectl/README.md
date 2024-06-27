@@ -67,7 +67,7 @@ user@test:~$ microk8s version
 MicroK8s v1.29.4 revision 6809
 ```
 2. Установить dashboard.  
-```
+```bash
 user@test:~$ microk8s enable dashboard
 Infer repository core for addon dashboard
 Enabling Kubernetes Dashboard

@@ -41,6 +41,44 @@ spec:
 ```
 2. Использовать image - gcr.io/kubernetes-e2e-test-images/echoserver:2.2.
 3. Подключиться локально к Pod с помощью `kubectl port-forward` и вывести значение (curl или в браузере).
+```bash
+user@test:~$ kubectl port-forward pod/hello-world 8080:8080
+Forwarding from 127.0.0.1:8080 -> 8080
+Forwarding from [::1]:8080 -> 8080
+```
+
+```bash
+user@test:~$ curl localhost:8080
+
+
+Hostname: hello-world
+
+Pod Information:
+	-no pod information available-
+
+Server values:
+	server_version=nginx: 1.12.2 - lua: 10010
+
+Request Information:
+	client_address=127.0.0.1
+	method=GET
+	real path=/
+	query=
+	request_version=1.1
+	request_scheme=http
+	request_uri=http://localhost:8080/
+
+Request Headers:
+	accept=*/*  
+	host=localhost:8080  
+	user-agent=curl/7.81.0  
+
+Request Body:
+	-no body in request-
+```
+
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/e63ae4c2-3bd0-43ca-aa54-45dde2dd9bb9)
+
 
 ------
 

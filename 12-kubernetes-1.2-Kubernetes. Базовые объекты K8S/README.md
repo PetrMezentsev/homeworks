@@ -89,10 +89,11 @@ Request Body:
 
 1. Создать Pod с именем netology-web.  
 
-[Манифест](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-1.2-Kubernetes.%20%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5%20%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B%20K8S/manifest/netology-web-pod.yaml)
+[Манифест](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-1.2-Kubernetes.%20%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5%20%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B%20K8S/manifest/netology-web.yaml)
 
 ```bash
-user@test:~$ cat netology-web-pod.yaml 
+user@test:~$ cat netology-web.yaml 
+---
 apiVersion: v1
 kind: Pod
 metadata:
@@ -103,17 +104,35 @@ spec:
   containers:
   - name: netology-web
     image: gcr.io/kubernetes-e2e-test-images/echoserver:2.2
-    ports:
-    - containerPort: 8083
 ```
 ```bash
-user@test:~$ kubectl apply -f netology-web-pod.yaml
+user@test:~$ kubectl apply -f netology-web.yaml
 pod/netology-web created
 ```
 2. Использовать image — gcr.io/kubernetes-e2e-test-images/echoserver:2.2.  
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/e47d30bc-19bc-4310-90d2-73f3774c9cfb)
 
-3. Создать Service с именем netology-svc и подключить к netology-web.
+3. Создать Service с именем netology-svc и подключить к netology-web.  
+```bash
+user@test:~$ cat netology-svc.yaml 
+apiVersion: v1
+kind: Service
+metadata:
+  name: netology-svc
+spec:
+  selector:
+    app: netology-web
+  ports:
+  - port: 80
+    targetPort: 8083
+user@test:~$ kubectl apply -f netology-svc.yaml
+service/netology-svc created
+user@test:~$ kubectl get svc
+NAME           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+kubernetes     ClusterIP   10.152.183.1     <none>        443/TCP   7d1h
+netology-svc   ClusterIP   10.152.183.235   <none>        80/TCP    2m49s
+```
+
 4. Подключиться локально к Service с помощью `kubectl port-forward` и вывести значение (curl или в браузере).
 
 ------

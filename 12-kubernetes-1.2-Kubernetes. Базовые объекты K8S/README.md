@@ -123,17 +123,26 @@ spec:
   selector:
     app: netology-web
   ports:
-  - port: 80
-    targetPort: 8083
+  - protocol: TCP 
+    port: 80
+    targetPort: 8080
+  type: NodePort
 user@test:~$ kubectl apply -f netology-svc.yaml
 service/netology-svc created
 user@test:~$ kubectl get svc
-NAME           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
-kubernetes     ClusterIP   10.152.183.1     <none>        443/TCP   7d1h
-netology-svc   ClusterIP   10.152.183.235   <none>        80/TCP    2m49s
+NAME           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+kubernetes     ClusterIP   10.152.183.1     <none>        443/TCP        7d2h
+netology-svc   NodePort    10.152.183.144   <none>        80:31180/TCP   43m
 ```
 
-4. Подключиться локально к Service с помощью `kubectl port-forward` и вывести значение (curl или в браузере).
+4. Подключиться локально к Service с помощью `kubectl port-forward` и вывести значение (curl или в браузере).  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/ceda0edd-88ca-4bbe-8854-87bd639d5946)
+
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/bdb943c2-2472-41f8-b8e9-b5da19c92542)
+
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/8ac47a99-76c6-4c1a-b61a-cad7a55e545a)
+
+
 
 ------
 

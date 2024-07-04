@@ -97,6 +97,8 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: netology-web
+  labels:
+    app: netology-web
 spec:
   containers:
   - name: netology-web
@@ -104,7 +106,13 @@ spec:
     ports:
     - containerPort: 8083
 ```
-2. Использовать image — gcr.io/kubernetes-e2e-test-images/echoserver:2.2.
+```bash
+user@test:~$ kubectl apply -f netology-web-pod.yaml
+pod/netology-web created
+```
+2. Использовать image — gcr.io/kubernetes-e2e-test-images/echoserver:2.2.  
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/e47d30bc-19bc-4310-90d2-73f3774c9cfb)
+
 3. Создать Service с именем netology-svc и подключить к netology-web.
 4. Подключиться локально к Service с помощью `kubectl port-forward` и вывести значение (curl или в браузере).
 

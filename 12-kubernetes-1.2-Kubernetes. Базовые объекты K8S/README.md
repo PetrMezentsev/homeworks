@@ -39,7 +39,10 @@ spec:
     ports:
     - containerPort: 8080
 ```
-2. Использовать image - gcr.io/kubernetes-e2e-test-images/echoserver:2.2.
+2. Использовать image - gcr.io/kubernetes-e2e-test-images/echoserver:2.2.  
+
+![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/709602d8-47d1-41bb-9c2e-00a548916f58)
+
 3. Подключиться локально к Pod с помощью `kubectl port-forward` и вывести значение (curl или в браузере).
 ```bash
 user@test:~$ kubectl port-forward pod/hello-world 8080:8080
@@ -84,7 +87,23 @@ Request Body:
 
 ### Задание 2. Создать Service и подключить его к Pod
 
-1. Создать Pod с именем netology-web.
+1. Создать Pod с именем netology-web.  
+
+[Манифест](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-1.2-Kubernetes.%20%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5%20%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B%20K8S/manifest/netology-web-pod.yaml)
+
+```bash
+user@test:~$ cat netology-web-pod.yaml 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: netology-web
+spec:
+  containers:
+  - name: netology-web
+    image: gcr.io/kubernetes-e2e-test-images/echoserver:2.2
+    ports:
+    - containerPort: 8083
+```
 2. Использовать image — gcr.io/kubernetes-e2e-test-images/echoserver:2.2.
 3. Создать Service с именем netology-svc и подключить к netology-web.
 4. Подключиться локально к Service с помощью `kubectl port-forward` и вывести значение (curl или в браузере).

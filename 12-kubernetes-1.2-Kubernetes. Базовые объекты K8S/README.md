@@ -89,7 +89,7 @@ Request Body:
 
 1. Создать Pod с именем netology-web.  
 
-[Манифест](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-1.2-Kubernetes.%20%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5%20%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B%20K8S/manifest/netology-web.yaml)
+[Pod](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-1.2-Kubernetes.%20%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5%20%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B%20K8S/manifest/netology-web.yaml)
 
 ```bash
 user@test:~$ cat netology-web.yaml 
@@ -113,6 +113,9 @@ pod/netology-web created
 ![изображение](https://github.com/PetrMezentsev/homeworks/assets/124135353/e47d30bc-19bc-4310-90d2-73f3774c9cfb)
 
 3. Создать Service с именем netology-svc и подключить к netology-web.  
+
+[Service](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-1.2-Kubernetes.%20%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5%20%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B%20K8S/manifest/netology-svc.yaml)
+
 ```bash
 user@test:~$ cat netology-svc.yaml 
 apiVersion: v1

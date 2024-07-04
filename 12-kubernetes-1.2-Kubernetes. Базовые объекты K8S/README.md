@@ -23,7 +23,22 @@
 
 ### Задание 1. Создать Pod с именем hello-world
 
-1. Создать манифест (yaml-конфигурацию) Pod.
+1. Создать манифест (yaml-конфигурацию) Pod.  
+
+[Манифест](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-1.2-Kubernetes.%20%D0%91%D0%B0%D0%B7%D0%BE%D0%B2%D1%8B%D0%B5%20%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B%20K8S/manifest/pod.yaml)
+```bash
+user@test:~$ cat pod.yaml 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-world
+spec:
+  containers:
+  - name: hello-world
+    image: gcr.io/kubernetes-e2e-test-images/echoserver:2.2
+    ports:
+    - containerPort: 8080
+```
 2. Использовать image - gcr.io/kubernetes-e2e-test-images/echoserver:2.2.
 3. Подключиться локально к Pod с помощью `kubectl port-forward` и вывести значение (curl или в браузере).
 

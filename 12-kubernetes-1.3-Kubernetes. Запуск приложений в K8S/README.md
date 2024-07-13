@@ -27,7 +27,11 @@
 1. Создать Deployment приложения, состоящего из двух контейнеров — nginx и multitool. Решить возникшую ошибку.  
 [deployment](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-1.3-Kubernetes.%20%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9%20%D0%B2%20K8S/manifest/app-deployment.yaml)
 2. После запуска увеличить количество реплик работающего приложения до 2.
-3. Продемонстрировать количество подов до и после масштабирования.
+3. Продемонстрировать количество подов до и после масштабирования.  
+до  
+![изображение](https://github.com/user-attachments/assets/64e2191e-f37c-40e6-b21b-6bbb58ebb80c)  
+после  
+![изображение](https://github.com/user-attachments/assets/739d8e3e-1d57-4aac-a927-37e484592b47)
 4. Создать Service, который обеспечит доступ до реплик приложений из п.1.
 5. Создать отдельный Pod с приложением multitool и убедиться с помощью `curl`, что из пода есть доступ до приложений из п.1.
 

@@ -36,6 +36,7 @@
 [service](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-1.3-Kubernetes.%20%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9%20%D0%B2%20K8S/manifest/app-service.yaml)
 5. Создать отдельный Pod с приложением multitool и убедиться с помощью `curl`, что из пода есть доступ до приложений из п.1.  
 [pod](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-1.3-Kubernetes.%20%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9%20%D0%B2%20K8S/manifest/multitool-pod.yaml)
+
 ![изображение](https://github.com/user-attachments/assets/056415b9-036d-4a1e-8229-b99e158d6fe4)
 ------
 

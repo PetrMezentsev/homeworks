@@ -42,10 +42,14 @@
 
 ### Задание 2. Создать Deployment и обеспечить старт основного контейнера при выполнении условий
 
-1. Создать Deployment приложения nginx и обеспечить старт контейнера только после того, как будет запущен сервис этого приложения.
+1. Создать Deployment приложения nginx и обеспечить старт контейнера только после того, как будет запущен сервис этого приложения.  
+[nginx-deployment](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-1.3-Kubernetes.%20%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9%20%D0%B2%20K8S/manifest/nginx-deployment.yaml)
 2. Убедиться, что nginx не стартует. В качестве Init-контейнера взять busybox.
-3. Создать и запустить Service. Убедиться, что Init запустился.
-4. Продемонстрировать состояние пода до и после запуска сервиса.
+3. Создать и запустить Service. Убедиться, что Init запустился.  
+[nginx-service](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-1.3-Kubernetes.%20%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9%20%D0%B2%20K8S/manifest/nginx-service.yaml)
+4. Продемонстрировать состояние пода до и после запуска сервиса.  
+![изображение](https://github.com/user-attachments/assets/5d91f6ac-fb82-4f3d-9b58-781832800865)
+
 
 ------
 

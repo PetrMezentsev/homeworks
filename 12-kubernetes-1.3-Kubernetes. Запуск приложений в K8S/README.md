@@ -25,7 +25,7 @@
 ### Задание 1. Создать Deployment и обеспечить доступ к репликам приложения из другого Pod
 
 1. Создать Deployment приложения, состоящего из двух контейнеров — nginx и multitool. Решить возникшую ошибку.  
-[deployment]()
+[deployment](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-1.3-Kubernetes.%20%D0%97%D0%B0%D0%BF%D1%83%D1%81%D0%BA%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9%20%D0%B2%20K8S/manifest/app-deployment.yaml)
 2. После запуска увеличить количество реплик работающего приложения до 2.
 3. Продемонстрировать количество подов до и после масштабирования.
 4. Создать Service, который обеспечит доступ до реплик приложений из п.1.

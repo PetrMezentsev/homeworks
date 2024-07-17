@@ -46,6 +46,8 @@ app-service   ClusterIP   10.152.183.50   <none>        9001/TCP,9002/TCP   13m 
 ![изображение](https://github.com/user-attachments/assets/d4471e87-20e1-49eb-86e3-79acadb56def)
 
 5. Продемонстрировать доступ с помощью `curl` по доменному имени сервиса.  
+![изображение](https://github.com/user-attachments/assets/af3a1ac9-c5b5-4e95-9cec-1376e1c6974a)
+
 
 6. Предоставить манифесты Deployment и Service в решении, а также скриншоты или вывод команды п.4.
 

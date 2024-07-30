@@ -81,8 +81,8 @@ Commercial support is available at
 </html>
    0 --:--:-- --:--:-- --:--:--  597k
 ```
-5. Предоставить манифесты Deployment и Service в решении, а также скриншоты или вывод команды п.4.
-
+5. Предоставить манифесты Deployment и Service в решении, а также скриншоты или вывод команды п.4.  
+[Манифесты](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-1.5-Kubernetes.%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%BE%D0%B5%20%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D0%B5%20%D0%B2%20K8S.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%202/manifest/task1.yaml)
 ------
 
 ### Задание 2. Создать Ingress и обеспечить доступ к приложениям снаружи кластера

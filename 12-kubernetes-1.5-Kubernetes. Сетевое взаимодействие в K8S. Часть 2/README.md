@@ -87,11 +87,19 @@ Commercial support is available at
 
 ### Задание 2. Создать Ingress и обеспечить доступ к приложениям снаружи кластера
 
-1. Включить Ingress-controller в MicroK8S.
-2. Создать Ingress, обеспечивающий доступ снаружи по IP-адресу кластера MicroK8S так, чтобы при запросе только по адресу открывался _frontend_ а при добавлении /api - _backend_.
-3. Продемонстрировать доступ с помощью браузера или `curl` с локального компьютера.
-4. Предоставить манифесты и скриншоты или вывод команды п.2.
+1. Включить Ingress-controller в MicroK8S.  
+![изображение](https://github.com/user-attachments/assets/d423f6fe-db72-457e-8cee-200103851a35)
 
+2. Создать Ingress, обеспечивающий доступ снаружи по IP-адресу кластера MicroK8S так, чтобы при запросе только по адресу открывался _frontend_ а при добавлении /api - _backend_.  
+3. Продемонстрировать доступ с помощью браузера или `curl` с локального компьютера.  
+![изображение](https://github.com/user-attachments/assets/0b2b9cf4-d4bb-4664-b4b0-06651f1e37ba)  
+
+
+![изображение](https://github.com/user-attachments/assets/7d7704de-b117-492d-ad12-31f00386ba7b)
+
+
+4. Предоставить манифесты и скриншоты или вывод команды п.2.
+[Манифест](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-1.5-Kubernetes.%20%D0%A1%D0%B5%D1%82%D0%B5%D0%B2%D0%BE%D0%B5%20%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D0%B5%20%D0%B2%20K8S.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%202/manifest/task2.yaml)
 ------
 
 ### Правила приема работы

@@ -26,9 +26,61 @@
 ### Задание 1. Создать Deployment приложений backend и frontend
 
 1. Создать Deployment приложения _frontend_ из образа nginx с количеством реплик 3 шт.
-2. Создать Deployment приложения _backend_ из образа multitool. 
-3. Добавить Service, которые обеспечат доступ к обоим приложениям внутри кластера. 
-4. Продемонстрировать, что приложения видят друг друга с помощью Service.
+2. Создать Deployment приложения _backend_ из образа multitool.   
+```bash
+user@test:~/1_5$ kubectl get po
+NAME                        READY   STATUS    RESTARTS      AGE
+backend-79fd848bb8-fdwvg    1/1     Running   0             7m7s
+frontend-69b666bd75-5x5mw   1/1     Running   1 (13m ago)   15m
+frontend-69b666bd75-8bbdz   1/1     Running   1 (13m ago)   15m
+frontend-69b666bd75-wtzdg   1/1     Running   1 (13m ago)   15m
+```
+3. Добавить Service, которые обеспечат доступ к обоим приложениям внутри кластера.   
+```bash
+user@test:~/1_5$ kubectl get svc
+NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+backend      ClusterIP   10.152.183.152   <none>        8080/TCP   15m
+frontend     ClusterIP   10.152.183.184   <none>        80/TCP     16m
+```
+4. Продемонстрировать, что приложения видят друг друга с помощью Service.  
+```bash
+user@test:~/1_5$ kubectl exec frontend-69b666bd75-5x5mw -- curl backend:8080
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   140  100   140    0     0   136k      0 --:--:-- --:--:-- --:--:--  136k
+WBITT Network MultiTool (with NGINX) - backend-79fd848bb8-fdwvg - 10.1.27.239 - HTTP: 80 , HTTPS: 443 . (Formerly praqma/network-multitool)
+```
+```bash
+user@test:~/1_5$ kubectl exec backend-79fd848bb8-fdwvg -- curl frontend
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   612  100   612    0     0   384k   <!DOCTYPE html>-:--:-- --:--:--     0
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+   0 --:--:-- --:--:-- --:--:--  597k
+```
 5. Предоставить манифесты Deployment и Service в решении, а также скриншоты или вывод команды п.4.
 
 ------

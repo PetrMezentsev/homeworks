@@ -100,7 +100,7 @@ Fri Aug 2 03:56:07 UTC 2024
 Fri Aug 2 03:56:07 UTC 2024
 
 #Видим, что после удаления PV файл остался на файловой системе ноды, потому что по логике работы объекта k8s PersistentVolume  
-в поле persistentVolumeReclaimPolicy установлено значение Retain, указывающее, что нужно сохранять файлы в volume при удалении PV.
+#в поле persistentVolumeReclaimPolicy установлено значение Retain, указывающее, что нужно сохранять файлы в volume при удалении PV.
 user@test:~/2_2$ kubectl delete pv data-pv 
 persistentvolume "data-pv" deleted
 user@test:~/2_2$ ls /mnt/data/test.txt 
@@ -113,7 +113,7 @@ Fri Aug 2 03:56:07 UTC 2024
 Fri Aug 2 03:56:07 UTC 2024
 ```
 6. Предоставить манифесты, а также скриншоты или вывод необходимых команд.
-
+(Manifest)[https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-2.2-%D0%A5%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20K8s.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%202/task1.yaml]
 ------
 
 ### Задание 2

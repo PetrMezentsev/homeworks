@@ -62,9 +62,19 @@ Fri Aug 2 03:48:46 UTC 2024
 Fri Aug 2 03:48:51 UTC 2024
 Fri Aug 2 03:48:51 UTC 2024
 ```
-4. Удалить Deployment и PVC. Продемонстрировать, что после этого произошло с PV. Пояснить, почему.
+4. Удалить Deployment и PVC. Продемонстрировать, что после этого произошло с PV. Пояснить, почему.  
+```bash
+user@test:~/2_2$ kubectl delete deployments.apps local-pv-deployment 
+deployment.apps "local-pv-deployment" deleted
+user@test:~/2_2$ kubectl delete pvc data-pvc 
+persistentvolumeclaim "data-pvc" deleted
+user@test:~/2_2$ kubectl get deployments.apps 
+No resources found in default namespace.
+user@test:~/2_2$ kubectl get pvc
+No resources found in default namespace.
+```
 5. Продемонстрировать, что файл сохранился на локальном диске ноды. Удалить PV.  Продемонстрировать что произошло с файлом после удаления PV. Пояснить, почему.
-5. Предоставить манифесты, а также скриншоты или вывод необходимых команд.
+6. Предоставить манифесты, а также скриншоты или вывод необходимых команд.
 
 ------
 

@@ -112,7 +112,7 @@ Fri Aug 2 03:56:02 UTC 2024
 Fri Aug 2 03:56:07 UTC 2024
 Fri Aug 2 03:56:07 UTC 2024
 ```
-6. Предоставить манифесты, а также скриншоты или вывод необходимых команд.
+6. Предоставить манифесты, а также скриншоты или вывод необходимых команд.  
 [Manifest](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-2.2-%D0%A5%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20K8s.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%202/task1.yaml)
 ------
 
@@ -122,9 +122,39 @@ Fri Aug 2 03:56:07 UTC 2024
 
 Создать Deployment приложения, которое может хранить файлы на NFS с динамическим созданием PV.
 
-1. Включить и настроить NFS-сервер на MicroK8S.
-2. Создать Deployment приложения состоящего из multitool, и подключить к нему PV, созданный автоматически на сервере NFS.
-3. Продемонстрировать возможность чтения и записи файла изнутри пода. 
+1. Включить и настроить NFS-сервер на MicroK8S.  
+```bash
+user@test:~/2_2$ sudo apt install nfs-common -y
+user@test:~/2_2$ helm install nfs-server stable/nfs-server-provisioner
+user@test:~/2_2$ kubectl get po
+NAME                                  READY   STATUS    RESTARTS   AGE
+nfs-server-nfs-server-provisioner-0   1/1     Running   0          27s
+user@test:~/2_2$ kubectl get sc
+NAME   PROVISIONER                                       RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+nfs    cluster.local/nfs-server-nfs-server-provisioner   Delete          Immediate           true                   30s
+user@test:~/2_2$ kubectl apply -f nfs-pvc.yaml 
+persistentvolumeclaim/nfs-pvc created
+user@test:~/2_2$ kubectl get pvc
+NAME      STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+nfs-pvc   Bound    pvc-69b38113-0416-4a82-99f7-3b7fa9460322   10Mi       RWO            nfs            <unset>                 8s
+user@test:~/2_2$ kubectl get pv
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM             STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+pvc-69b38113-0416-4a82-99f7-3b7fa9460322   10Mi       RWO            Delete           Bound    default/nfs-pvc   nfs            <unset>                          97s
+
+```
+2. Создать Deployment приложения состоящего из multitool, и подключить к нему PV, созданный автоматически на сервере NFS.  
+```bash
+user@test:~/2_2$ kubectl apply -f nfs-deployment.yaml 
+deployment.apps/nfs-multitool-deployment created
+user@test:~/2_2$ kubectl get po
+NAME                                        READY   STATUS    RESTARTS   AGE
+nfs-multitool-deployment-596548f845-4x6qn   1/1     Running   0          6s
+nfs-server-nfs-server-provisioner-0         1/1     Running   0          14m
+```
+3. Продемонстрировать возможность чтения и записи файла изнутри пода.  
+
+![изображение](https://github.com/user-attachments/assets/072c9a4c-8f95-4b39-8305-c4da046a6b27)
+
 4. Предоставить манифесты, а также скриншоты или вывод необходимых команд.
 
 ------

@@ -78,7 +78,40 @@ user@test:~/2_2$ kubectl get pv
 NAME      CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS     CLAIM              STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
 data-pv   10Mi       RWO            Retain           Released   default/data-pvc                  <unset>                          13m
 ```
-5. Продемонстрировать, что файл сохранился на локальном диске ноды. Удалить PV.  Продемонстрировать что произошло с файлом после удаления PV. Пояснить, почему.
+5. Продемонстрировать, что файл сохранился на локальном диске ноды. Удалить PV.  Продемонстрировать что произошло с файлом после удаления PV. Пояснить, почему.  
+```bash
+user@test:~/2_2$ ls /mnt/data/test.txt 
+/mnt/data/test.txt
+user@test:~/2_2$ tail -n 15 /mnt/data/test.txt 
+Fri Aug 2 03:55:32 UTC 2024
+Fri Aug 2 03:55:37 UTC 2024
+Fri Aug 2 03:55:37 UTC 2024
+Fri Aug 2 03:55:42 UTC 2024
+Fri Aug 2 03:55:42 UTC 2024
+Fri Aug 2 03:55:47 UTC 2024
+Fri Aug 2 03:55:47 UTC 2024
+Fri Aug 2 03:55:52 UTC 2024
+Fri Aug 2 03:55:52 UTC 2024
+Fri Aug 2 03:55:57 UTC 2024
+Fri Aug 2 03:55:57 UTC 2024
+Fri Aug 2 03:56:02 UTC 2024
+Fri Aug 2 03:56:02 UTC 2024
+Fri Aug 2 03:56:07 UTC 2024
+Fri Aug 2 03:56:07 UTC 2024
+
+#Видим, что после удаления PV файл остался на файловой системе ноды, потому что по логике работы объекта k8s PersistentVolume  
+в поле persistentVolumeReclaimPolicy установлено значение Retain, указывающее, что нужно сохранять файлы в volume при удалении PV.
+user@test:~/2_2$ kubectl delete pv data-pv 
+persistentvolume "data-pv" deleted
+user@test:~/2_2$ ls /mnt/data/test.txt 
+/mnt/data/test.txt
+user@test:~/2_2$ tail -n 5 /mnt/data/test.txt 
+Fri Aug 2 03:55:57 UTC 2024
+Fri Aug 2 03:56:02 UTC 2024
+Fri Aug 2 03:56:02 UTC 2024
+Fri Aug 2 03:56:07 UTC 2024
+Fri Aug 2 03:56:07 UTC 2024
+```
 6. Предоставить манифесты, а также скриншоты или вывод необходимых команд.
 
 ------

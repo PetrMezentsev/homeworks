@@ -72,6 +72,11 @@ user@test:~/2_2$ kubectl get deployments.apps
 No resources found in default namespace.
 user@test:~/2_2$ kubectl get pvc
 No resources found in default namespace.
+
+#Видим, что PV, созданный нами вручную, продолжил существовать в качестве объекта, но у него появился статус Released, так как связь (bound) между PV и PVC (который мы удалили) отсутствует.
+user@test:~/2_2$ kubectl get pv
+NAME      CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS     CLAIM              STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+data-pv   10Mi       RWO            Retain           Released   default/data-pvc                  <unset>                          13m
 ```
 5. Продемонстрировать, что файл сохранился на локальном диске ноды. Удалить PV.  Продемонстрировать что произошло с файлом после удаления PV. Пояснить, почему.
 6. Предоставить манифесты, а также скриншоты или вывод необходимых команд.

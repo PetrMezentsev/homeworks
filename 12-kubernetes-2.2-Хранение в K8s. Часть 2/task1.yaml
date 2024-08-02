@@ -1,0 +1,58 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: local-pv-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: local-pv-app
+  template:
+    metadata:
+      labels:
+        app: local-pv-app
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command: ["sh", "-c", "while true; do echo $(date) >> /data/test.txt; sleep 5; done"]
+        volumeMounts:
+        - name: data-volume
+          mountPath: /data
+      - name: multitool
+        image: wbitt/network-multitool:latest
+        command: ["sh", "-c", "while true; do cat /data/test.txt; sleep 1; done"]
+        volumeMounts:
+        - name: data-volume
+          mountPath: /data
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: data-pvc
+
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: data-pv
+spec:
+  capacity:
+    storage: 10Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /mnt/data
+  persistentVolumeReclaimPolicy: Retain
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Mi

@@ -157,6 +157,8 @@ nfs-server-nfs-server-provisioner-0         1/1     Running   0          14m
 
 4. Предоставить манифесты, а также скриншоты или вывод необходимых команд.
 
+[Manifest](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-2.2-%D0%A5%D1%80%D0%B0%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%B2%20K8s.%20%D0%A7%D0%B0%D1%81%D1%82%D1%8C%202/task2.yaml)
+
 ------
 
 ### Правила приёма работы

@@ -18,6 +18,10 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
+        volumeMounts:
+          - name: nginx-index
+            mountPath: /usr/share/nginx/html/index.html
+            subPath: index.html
       - name: multitool
         image: wbitt/network-multitool:latest
         ports:
@@ -28,6 +32,10 @@ spec:
             configMapKeyRef:
               name: configmap-task1
               key: multitool_port
+      volumes:
+        - name: nginx-index
+          configMap:
+            name: configmap-task1
         
 ---
 apiVersion: v1
@@ -36,4 +44,29 @@ metadata:
   name: configmap-task1
 data:
   multitool_port: "8080"
+  index.html: |
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <title>NGINX Web Server</title>
+    </head>
+    <body>
+    <h1>Welcome to my NGINX Web Server</h1>
+    <p>My helloworld pochti sovsem ne tormozit!</p>
+    </body>
+    </html>
 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-task1
+spec:
+  selector:
+    app: nginx-multitool
+  ports:
+    - name: nginx
+      nodePort: 30101
+      port: 80
+  type: NodePort

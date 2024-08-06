@@ -26,7 +26,13 @@
 
 1. Создать Deployment приложения, состоящего из контейнеров nginx и multitool.
 2. Решить возникшую проблему с помощью ConfigMap.
-3. Продемонстрировать, что pod стартовал и оба конейнера работают.
+3. Продемонстрировать, что pod стартовал и оба конейнера работают.  
+```bash
+user@test:~/2_3$ kubectl get po
+NAME                                          READY   STATUS    RESTARTS      AGE
+nfs-server-nfs-server-provisioner-0           1/1     Running   1 (75m ago)   4d4h
+nginx-multitool-deployment-7ff769d79c-dk9wm   2/2     Running   0             28s
+```
 4. Сделать простую веб-страницу и подключить её к Nginx с помощью ConfigMap. Подключить Service и показать вывод curl или в браузере.
 5. Предоставить манифесты, а также скриншоты или вывод необходимых команд.
 

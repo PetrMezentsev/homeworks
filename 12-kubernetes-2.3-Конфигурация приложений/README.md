@@ -31,11 +31,32 @@
 user@test:~/2_3$ kubectl get po
 NAME                                          READY   STATUS    RESTARTS      AGE
 nfs-server-nfs-server-provisioner-0           1/1     Running   1 (75m ago)   4d4h
-nginx-multitool-deployment-7ff769d79c-dk9wm   2/2     Running   0             28s
+nginx-multitool-deployment-6787fd8785-jmqhv   2/2     Running   0             28s
 ```
-4. Сделать простую веб-страницу и подключить её к Nginx с помощью ConfigMap. Подключить Service и показать вывод curl или в браузере.
-5. Предоставить манифесты, а также скриншоты или вывод необходимых команд.
+4. Сделать простую веб-страницу и подключить её к Nginx с помощью ConfigMap. Подключить Service и показать вывод curl или в браузере.  
+```bash
+user@test:~/2_3$ kubectl get svc
+NAME                                TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+service-task1                       NodePort    10.152.183.144   <none>        80:30101/TCP     8s
 
+///
+user@test:~/2_3$ curl localhost:30101
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>NGINX Web Server</title>
+</head>
+<body>
+<h1>Welcome to my NGINX Web Server</h1>
+<p>My helloworld pochti sovsem ne tormozit!</p>
+</body>
+</html>
+```
+![изображение](https://github.com/user-attachments/assets/67859561-ac22-4169-b9b2-3eda14d35ce8)
+
+5. Предоставить манифесты, а также скриншоты или вывод необходимых команд.  
+[Manifest](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-2.3-%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9/task1.yaml)
 ------
 
 ### Задание 2. Создать приложение с вашей веб-страницей, доступной по HTTPS 

@@ -39,7 +39,7 @@ user@test:~/2_3$ kubectl get svc
 NAME                                TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
 service-task1                       NodePort    10.152.183.144   <none>        80:30101/TCP     8s
 
-///
+...
 user@test:~/2_3$ curl localhost:30101
 <!DOCTYPE html>
 <html>
@@ -61,11 +61,29 @@ user@test:~/2_3$ curl localhost:30101
 
 ### Задание 2. Создать приложение с вашей веб-страницей, доступной по HTTPS 
 
-1. Создать Deployment приложения, состоящего из Nginx.
+1. Создать Deployment приложения, состоящего из Nginx.  
+```bash
+user@test:~/2_3$ kubectl apply -f nd.yaml 
+deployment.apps/deployment2 created
+```
 2. Создать собственную веб-страницу и подключить её как ConfigMap к приложению.
-3. Выпустить самоподписной сертификат SSL. Создать Secret для использования сертификата.
-4. Создать Ingress и необходимый Service, подключить к нему SSL в вид. Продемонстировать доступ к приложению по HTTPS. 
-4. Предоставить манифесты, а также скриншоты или вывод необходимых команд.
+3. Выпустить самоподписной сертификат SSL. Создать Secret для использования сертификата.  
+```bash
+user@test:~/2_3$ openssl req -x509 -newkey rsa:4096 -sha256 -nodes -keyout tls.key -out tls.crt -subj "/CN=testsite.com" -days 365
+user@test:~/2_3$ kubectl create secret tls secret-tlsname --cert=tls.crt --key=tls.key
+secret/secret-tlsname created
+```
+4. Создать Ingress и необходимый Service, подключить к нему SSL в вид. Продемонстировать доступ к приложению по HTTPS.   
+```bash
+user@test:~/2_3$ kubectl apply -f ingress-nginx.yaml 
+ingress.networking.k8s.io/ingressname created
+user@test:~/2_3$ kubectl apply -f svc2.yaml 
+service/servicename created
+```
+5. Предоставить манифесты, а также скриншоты или вывод необходимых команд.
+![изображение](https://github.com/user-attachments/assets/28ae78e5-cb6d-472a-8bba-70e0406d57d8)
+
+[Manifest](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-2.3-%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9/task2.yaml)
 
 ------
 

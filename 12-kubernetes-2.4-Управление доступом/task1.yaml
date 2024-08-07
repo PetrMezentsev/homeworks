@@ -1,0 +1,25 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: for-user-pod-describe-and-logs
+  namespace: default
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "pods/log"]
+    verbs: ["watch", "list", "get"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: user-rolebinding
+  namespace: default
+subjects:
+- kind: User
+  name: user
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: for-user-pod-describe-and-logs
+  apiGroup: rbac.authorization.k8s.io

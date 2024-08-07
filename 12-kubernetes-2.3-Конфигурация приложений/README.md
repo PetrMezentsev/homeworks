@@ -81,7 +81,20 @@ user@test:~/2_3$ kubectl apply -f svc2.yaml
 service/servicename created
 ```
 5. Предоставить манифесты, а также скриншоты или вывод необходимых команд.
-![изображение](https://github.com/user-attachments/assets/28ae78e5-cb6d-472a-8bba-70e0406d57d8)
+```bash
+user@test:~/2_3$ curl testsite.com
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>NGINX Web Server</title>
+</head>
+<body>
+<h1>Welcome to my NGINX Web Server</h1>
+<p>Hello from Task number 2!</p>
+</body>
+</html>
+```
 
 [Manifest](https://github.com/PetrMezentsev/homeworks/blob/main/12-kubernetes-2.3-%D0%9A%D0%BE%D0%BD%D1%84%D0%B8%D0%B3%D1%83%D1%80%D0%B0%D1%86%D0%B8%D1%8F%20%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D0%B9/task2.yaml)
 

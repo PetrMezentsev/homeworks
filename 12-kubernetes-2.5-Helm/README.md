@@ -27,6 +27,7 @@
 ```bash
 user@test:~/2_5$ mkdir app-nginx
 user@test:~/2_5$ cd app-nginx/
+
 user@test:~/2_5/app-nginx$ cat Chart.yaml 
 apiVersion: v2
 name: nginx
@@ -34,6 +35,7 @@ description: A Helm chart for deploying Nginx
 type: application
 version: 1.0.0
 appVersion: "1.16.1"
+
 user@test:~/2_5/app-nginx$ cat values.yaml 
 replicaCount: 1
 
@@ -41,6 +43,7 @@ image:
   repository: nginx
   tag: 1.16.1
   pullPolicy: IfNotPresent
+
 user@test:~/2_5$ helm install app-nginx ./app-nginx
 WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /home/user/.kube/config
 WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /home/user/.kube/config

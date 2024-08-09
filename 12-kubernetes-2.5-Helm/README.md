@@ -76,7 +76,63 @@ app-nginx	default  	3       	2024-08-09 10:44:02.600657591 +0700 +07	deployedngi
 
 1. Подготовив чарт, необходимо его проверить. Запуститe несколько копий приложения.
 2. Одну версию в namespace=app1, вторую версию в том же неймспейсе, третью версию в namespace=app2.
-3. Продемонстрируйте результат.
+3. Продемонстрируйте результат.  
+```bash
+user@test:~/2_5$ kubectl create ns app1
+namespace/app1 created
+user@test:~/2_5$ kubectl create ns app2
+namespace/app2 created
+user@test:~/2_5$ kubectl create ns app1
+namespace/app1 created
+user@test:~/2_5$ kubectl create ns app2
+namespace/app2 created
+user@test:~/2_5$ kubectl get ns
+NAME              STATUS   AGE
+app1              Active   3m30s
+app2              Active   3m18s
+default           Active   42d
+kube-node-lease   Active   42d
+kube-public       Active   42d
+kube-system       Active   42d
+
+user@test:~/2_5$ helm install app-nginx ./app-nginx -n app1
+WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /home/user/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /home/user/.kube/config
+NAME: app-nginx
+LAST DEPLOYED: Fri Aug  9 10:53:26 2024
+NAMESPACE: app1
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+user@test:~/2_5$ helm install app-nginx-2 ./app-nginx -n app1 --set image.tag=1.18
+WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /home/user/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /home/user/.kube/config
+NAME: app-nginx-2
+LAST DEPLOYED: Fri Aug  9 10:54:26 2024
+NAMESPACE: app1
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+user@test:~/2_5$ helm install app-nginx-3 ./app-nginx -n app2 --set image.tag=1.19
+WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /home/user/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /home/user/.kube/config
+NAME: app-nginx-3
+LAST DEPLOYED: Fri Aug  9 10:54:52 2024
+NAMESPACE: app2
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+
+user@test:~/2_5$ helm list -A
+WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /home/user/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /home/user/.kube/config
+NAME          	NAMESPACE  	REVISION	UPDATED                                	STATUS  CHART                	APP VERSION
+app-nginx     	app1       	1       	2024-08-09 10:53:26.578404746 +0700 +07	deployednginx-1.0.0          	1.17.1     
+app-nginx     	default    	3       	2024-08-09 10:44:02.600657591 +0700 +07	deployednginx-1.0.0          	1.17.1     
+app-nginx-2   	app1       	1       	2024-08-09 10:54:26.341911839 +0700 +07	deployednginx-1.0.0          	1.17.1     
+app-nginx-3   	app2       	1       	2024-08-09 10:54:52.292326205 +0700 +07	deployednginx-1.0.0          	1.17.1     
+csi-driver-nfs	kube-system	1       	2024-08-02 15:04:36.724938806 +0700 +07	deployedcsi-driver-nfs-v4.8.0	v4.8.0
+```
 
 ### Правила приёма работы
 

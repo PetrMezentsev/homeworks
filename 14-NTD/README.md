@@ -89,8 +89,10 @@
 
 Ожидаемый результат:
 
-1. Git репозиторий с тестовым приложением и Dockerfile.
-2. Регистри с собранным docker image. В качестве регистри может быть DockerHub или [Yandex Container Registry](https://cloud.yandex.ru/services/container-registry), созданный также с помощью terraform.
+1. Git репозиторий с тестовым приложением и Dockerfile.  
+[Репозиторий с тестовым приложением](https://github.com/PetrMezentsev/homeworks/tree/main/14-NTD/test-nginx-app)
+2. Регистри с собранным docker image. В качестве регистри может быть DockerHub или [Yandex Container Registry](https://cloud.yandex.ru/services/container-registry), созданный также с помощью terraform.  
+[Регистри](https://hub.docker.com/repository/docker/mpvj/test-nginx-app/general)
 
 ---
 ### Подготовка cистемы мониторинга и деплой приложения
